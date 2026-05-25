@@ -110,4 +110,4 @@ MIT License
 Falola Olufemi Adedeji
 - Email: femi.deji0@gmail.com
 - LinkedIn: [linkedin.com/in/falola-olufemi](https://linkedin.com/in/falola-olufemi)
-- GitHub: [github.com/femi-deji](https://github.com/femi-deji)
+- GitHub: [github.com/femi-deji](https://github.com/falola13)
