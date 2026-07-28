@@ -193,3 +193,51 @@
       0 12px 32px -12px hsl(var(--shadow-color) / 0.18);
   }
 }
+
+/*
+ * Résumé page.
+ *
+ * Always light regardless of the site theme — this exists to be printed, and a
+ * dark background would either waste toner or silently drop to white and take
+ * the light-on-dark text with it.
+ */
+.resume {
+  color-scheme: light;
+}
+
+html:has(.resume),
+html:has(.resume) body {
+  background: #fff;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 12mm;
+  }
+
+  html:has(.resume),
+  html:has(.resume) body {
+    background: #fff !important;
+  }
+
+  .resume {
+    max-width: none;
+    padding: 0;
+    font-size: 9.6pt;
+  }
+
+  /* Keep a role and its bullets on one page. */
+  .resume section {
+    break-inside: avoid;
+  }
+
+  .resume h2 {
+    break-after: avoid;
+  }
+
+  .resume a {
+    text-decoration: none;
+    color: inherit;
+  }
+}

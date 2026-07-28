@@ -8,6 +8,8 @@
 
 export interface Contact {
   email: string;
+  /** Résumé only — deliberately kept off the crawlable page. */
+  phone?: string;
   location: string;
   timezone: string;
   /**

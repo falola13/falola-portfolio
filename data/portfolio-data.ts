@@ -23,17 +23,33 @@ export const profile = {
     "I build production web and mobile products — and I'm moving that work into AI engineering.",
   lede: "Full-stack engineer with five years shipping user-facing products across fintech, edtech, and consumer SaaS. Frontend architecture in React, Next.js, and React Native; backend delivery in Node.js, NestJS, and Go. Now taking that into AI engineering, where a statistics degree is finally earning its keep.",
   availability: "Open to full-stack and AI engineering roles",
+  /**
+   * The résumé opener. Deliberately different from the web lede: a recruiter
+   * screening on keywords needs the stack and the direction stated plainly in
+   * the first three lines, where the web page can afford a slower opening.
+   */
+  resumeSummary:
+    "Full-stack engineer with five years shipping user-facing web and mobile products across fintech, edtech, and consumer SaaS. Frontend architecture in React, Next.js, and React Native; backend delivery in Node.js, NestJS, Go, and PostgreSQL. Have led a small frontend team and mentored three engineers. Statistics graduate now moving into AI engineering, with an AWS generative AI certification in progress and a focus on the evaluation work that decides whether model output is dependable enough to ship.",
 } as const;
 
 export const contact: Contact = {
   email: "femi.deji0@gmail.com",
+  /**
+   * Résumé only — never rendered on the public page. A phone number in crawlable
+   * HTML is a spam magnet; on a document you hand to a recruiter it's expected.
+   */
+  phone: "+234 703 307 2843",
   location: "Lagos, Nigeria",
   timezone: "WAT (UTC+1)",
   overlap:
     "Same working hours as Berlin, Paris, and Amsterdam — full overlap with European teams, and afternoons overlap with US Eastern.",
   linkedin: "https://www.linkedin.com/in/falola-olufemi-87292625b",
   github: "https://github.com/falola13",
-  resume: "/resume.pdf",
+  /**
+   * The generated page, not a checked-in PDF. The old PDF drifted out of sync
+   * with the site; this can't. Print it to PDF when a file is needed.
+   */
+  resume: "/resume",
 };
 
 /**
@@ -366,6 +382,7 @@ export const education: Education[] = [
   },
   {
     qualification: "NCE, Computer Science / Mathematics",
+    institution: "Federal College of Education, Ogun State",
     year: "2017",
   },
 ];
