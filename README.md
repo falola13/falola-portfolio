@@ -37,15 +37,23 @@ npm run lint       # eslint (flat config; `next lint` was removed in Next 16)
 
 ## Environment
 
-The contact form posts to [Web3Forms](https://web3forms.com) through an internal
-route, so the access key never reaches the browser.
+The contact form posts to [Web3Forms](https://web3forms.com) directly from the
+browser.
 
 ```
-WEB3FORMS_ACCESS_KEY=your_key_here
+NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your_key_here
 ```
 
-Without it, `/api/contact` returns a 503 and a friendly message; the page still
-offers the direct mailto fallback.
+This has to be a `NEXT_PUBLIC_` variable, and that is deliberate rather than an
+oversight. Web3Forms sits behind Cloudflare and serves a bot challenge to
+server-side requests from some networks — proxying through an API route
+reliably came back as a 403 HTML page instead of JSON, so the form silently
+failed. Direct browser submission is the vendor's documented design, and their
+access key is public by design; a hidden `botcheck` honeypot handles the spam
+exposure that comes with it.
+
+Set the same variable on the host, or the deployed form will report that it
+isn't configured. The page always offers a direct mailto as a fallback.
 
 ## Structure
 
@@ -57,8 +65,7 @@ app/
 ├── icon.tsx              # Favicon, generated via next/og
 ├── favicon.ico           # Static fallback so /favicon.ico doesn't 404
 ├── opengraph-image.tsx   # Social card, generated at build time
-├── sitemap.ts, robots.ts
-└── api/contact/route.ts  # Validates, then forwards to Web3Forms
+└── sitemap.ts, robots.ts
 components/
 ├── Nav, Hero, Work, Experience, Focus, About, Contact, Footer
 ├── Section.tsx           # Shared section chrome (eyebrow, heading, rule)
@@ -80,6 +87,8 @@ types/index.ts            # Content types
   failsafe. Content can't get stranded invisible.
 - **Content is data, not markup.** Copy lives in `data/portfolio-data.ts`, so
   editing the site doesn't mean editing components.
+- **Fully static.** There are no server routes, so the whole site prerenders and
+  can be served from any static host.
 - **Generated OG card.** `app/opengraph-image.tsx` builds the social card from
   the same data as the page, so the two can't drift. No remote fonts, so it
   builds offline.

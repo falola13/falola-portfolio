@@ -22,10 +22,41 @@ const SUBJECTS = [
   { value: "other", label: "Something else" },
 ];
 
+/**
+ * Submitted straight from the browser rather than proxied through an API route.
+ *
+ * Web3Forms sits behind Cloudflare and serves a bot challenge to server-side
+ * requests from some networks — the route reliably received a 403 HTML page
+ * instead of JSON. Direct browser submission is the vendor's documented design,
+ * and their access key is public by design.
+ */
+const ENDPOINT = "https://api.web3forms.com/submit";
+const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+
+/** Mirrors the limits the old server route enforced. */
+const LIMITS = { name: 120, email: 200, subject: 60, message: 4000 } as const;
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+/** Returns a visitor-facing message, or null when the form is good to send. */
+function validate(form: FormState): string | null {
+  if (!form.name.trim() || !form.email.trim() || !form.subject || !form.message.trim()) {
+    return "Please fill in every field.";
+  }
+  if (!EMAIL.test(form.email.trim())) {
+    return "That email address doesn't look right.";
+  }
+  if (form.message.trim().length > LIMITS.message) {
+    return "That message is a little too long — could you trim it?";
+  }
+  return null;
+}
+
 export function Contact() {
   const [form, setForm] = useState<FormState>(EMPTY);
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
   const [error, setError] = useState("");
+  /** Honeypot. Stays empty for anyone using the form as intended. */
+  const [botField, setBotField] = useState("");
 
   const update =
     (field: keyof FormState) =>
@@ -38,31 +69,53 @@ export function Contact() {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
+    const invalid = validate(form);
+    if (invalid) {
+      setError(invalid);
+      return;
+    }
+
+    if (!ACCESS_KEY) {
+      // Misconfiguration on my side — say so plainly rather than failing silently.
+      setError("The form isn't configured right now.");
+      return;
+    }
+
     setStatus("sending");
     setError("");
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: ACCESS_KEY,
+          name: form.name.trim().slice(0, LIMITS.name),
+          email: form.email.trim().slice(0, LIMITS.email),
+          subject: form.subject.slice(0, LIMITS.subject),
+          message: form.message.trim().slice(0, LIMITS.message),
+          from_name: "Portfolio contact form",
+          // Web3Forms' honeypot: real people never see this field, so anything
+          // that fills it is discarded upstream as spam.
+          botcheck: botField,
+        }),
       });
 
-      const data = await response.json().catch(() => ({}));
+      const data = await response.json().catch(() => null);
 
-      if (!response.ok) {
-        throw new Error(data.error || "Couldn't send that. Try again?");
+      if (!response.ok || !data?.success) {
+        throw new Error("That didn't send. Please try again in a moment.");
       }
 
       setStatus("sent");
       setForm(EMPTY);
-    } catch (err) {
+    } catch {
       setStatus("idle");
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Couldn't send that. Try again, or email me directly.",
-      );
+      setError("Couldn't send that. Try again, or email me directly.");
     }
   };
 
@@ -165,6 +218,22 @@ export function Contact() {
                   placeholder="What are you building?"
                 />
               </div>
+
+              {/*
+                Honeypot. Hidden from sighted users and from screen readers
+                (aria-hidden + tabIndex -1), so only an automated filler will
+                populate it.
+              */}
+              <input
+                type="text"
+                name="botcheck"
+                value={botField}
+                onChange={(event) => setBotField(event.target.value)}
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
 
               {error && (
                 <div
