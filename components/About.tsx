@@ -39,6 +39,13 @@ export function About() {
             AI engineering, because the interesting reliability problems have
             moved there.
           </p>
+          <p>
+            My degree is in statistics, which sat quietly under the product work
+            for years and has become the most useful thing I have for that move.
+            The hard part of shipping AI isn&apos;t calling the model — it&apos;s
+            knowing whether the output is actually good, which is a measurement
+            problem before it is an engineering one.
+          </p>
         </Reveal>
 
         <div className="space-y-10">

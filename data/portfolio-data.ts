@@ -21,7 +21,7 @@ export const profile = {
   /** The one line that has to do the most work on the page. */
   headline:
     "I build production web and mobile products — and I'm moving that work into AI engineering.",
-  lede: "Full-stack engineer with five years shipping user-facing products across fintech, edtech, and consumer SaaS. Frontend architecture in React, Next.js, and React Native; backend delivery in Node.js, NestJS, and Go. Currently going deep on generative AI on AWS.",
+  lede: "Full-stack engineer with five years shipping user-facing products across fintech, edtech, and consumer SaaS. Frontend architecture in React, Next.js, and React Native; backend delivery in Node.js, NestJS, and Go. Now taking that into AI engineering, where a statistics degree is finally earning its keep.",
   availability: "Open to full-stack and AI engineering roles",
 } as const;
 
@@ -285,26 +285,26 @@ export const focus: FocusItem[] = [
   {
     label: "AWS generative AI certification",
     detail:
-      "Working through the AWS generative AI certification track — foundation models, prompt engineering, retrieval-augmented generation, and the Bedrock service surface.",
+      "Working through the AWS generative AI certification track — foundation models, prompt engineering, retrieval-augmented generation, and the Bedrock service surface, alongside the AWS and Docker fundamentals that give it somewhere reliable to run.",
     status: "in-progress",
   },
   {
-    label: "Moving into AI engineering",
+    label: "A statistics degree, pointed at AI systems",
     detail:
-      "Turning five years of product engineering toward AI systems: RAG pipelines, evaluation harnesses, and the application layer that makes model output dependable enough to ship.",
+      "My degree is in statistics, which turns out to be the useful half of this move. Sampling, inference, and experimental design are what separate a model that demos well from one that holds up — and they apply at the application layer, not just in training.",
     status: "active",
+  },
+  {
+    label: "Evaluation over impressions",
+    detail:
+      "Working toward labelled evaluation sets, precision and recall reported per class, and prompt versions scored against each other rather than eyeballed. Calling a model is the easy half; proving its output is dependable is the part worth being good at.",
+    status: "next",
   },
   {
     label: "AI features in production products",
     detail:
       "Applying that work where I already build — the AI-driven risk and fraud signals inside Finaive's escrow platform are the closest thing I have to a live proving ground.",
     status: "active",
-  },
-  {
-    label: "Cloud and containers",
-    detail:
-      "Deepening AWS and Docker fundamentals so the AI work has somewhere reliable to run.",
-    status: "next",
   },
 ];
 
