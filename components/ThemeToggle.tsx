@@ -1,38 +1,35 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react'
-import { Moon, Sun } from 'lucide-react'
+import { Moon, Sun } from "lucide-react";
 
+/**
+ * Stateless by design.
+ *
+ * The `dark` class is set by the blocking script in the document head before
+ * paint, and the two icons are shown/hidden with `dark:` variants — so this
+ * component holds no React state, can't disagree with the DOM, and never flips
+ * its icon after hydration.
+ */
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light')
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    
-    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light')
-    setTheme(initialTheme)
-    document.documentElement.classList.toggle('dark', initialTheme === 'dark')
-  }, [])
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light'
-    setTheme(newTheme)
-    localStorage.setItem('theme', newTheme)
-    document.documentElement.classList.toggle('dark', newTheme === 'dark')
-  }
+  const toggle = () => {
+    const isDark = document.documentElement.classList.toggle("dark");
+    try {
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    } catch {
+      // Private browsing or blocked storage — the toggle still works for this
+      // page view, it just won't be remembered.
+    }
+  };
 
   return (
     <button
-      onClick={toggleTheme}
-      className="fixed top-6 right-6 z-50 p-3 rounded-full bg-card border border-border shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-      aria-label="Toggle theme"
+      type="button"
+      onClick={toggle}
+      aria-label="Toggle colour theme"
+      className="grid size-10 place-items-center rounded-full border border-border text-muted-foreground transition-colors duration-200 hover:border-border-strong hover:text-foreground"
     >
-      {theme === 'light' ? (
-        <Moon className="w-5 h-5 text-foreground" />
-      ) : (
-        <Sun className="w-5 h-5 text-foreground" />
-      )}
+      <Moon className="size-[1.05rem] dark:hidden" strokeWidth={1.6} />
+      <Sun className="hidden size-[1.05rem] dark:block" strokeWidth={1.6} />
     </button>
-  )
+  );
 }

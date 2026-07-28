@@ -1,499 +1,362 @@
 import {
-  Code2,
-  Layout,
-  Server,
-  Database,
-  Wrench,
-  Briefcase,
-  Users,
-  Zap,
-  Target,
-} from "lucide-react";
-import {
-  Achievement,
-  SkillCategory,
-  Experience,
-  Project,
-  Education,
-  Testimonial,
-  BlogPost,
-  Service,
-  Certification,
-  CodeSnippet,
-  TimelineEvent,
-  CurrentlyLearning,
-  Skill,
+  CaseStudy,
+  Contact,
+  Credential,
+  FocusItem,
+  Metric,
+  OpenSourceProject,
+  Role,
+  SideProject,
+  StackGroup,
 } from "@/types";
 
-export const achievements: Achievement[] = [
+export const SITE_URL = "https://falola.is-a.dev";
+
+export const profile = {
+  name: "Falola Olufemi Adedeji",
+  shortName: "Falola Olufemi",
+  initials: "FOA",
+  title: "Full-Stack Engineer",
+  /** The one line that has to do the most work on the page. */
+  headline:
+    "I build production web and mobile products — and I'm moving that work into AI engineering.",
+  lede: "Full-stack engineer with five years shipping user-facing products across fintech, edtech, and consumer SaaS. Frontend architecture in React, Next.js, and React Native; backend delivery in Node.js, NestJS, and Go. Currently going deep on generative AI on AWS.",
+  availability: "Open to full-stack and AI engineering roles",
+} as const;
+
+export const contact: Contact = {
+  email: "femi.deji0@gmail.com",
+  location: "Lagos, Nigeria",
+  timezone: "WAT (UTC+1)",
+  overlap:
+    "Same working hours as Berlin, Paris, and Amsterdam — full overlap with European teams, and afternoons overlap with US Eastern.",
+  linkedin: "https://www.linkedin.com/in/falola-olufemi-87292625b",
+  github: "https://github.com/falola13",
+  resume: "/resume.pdf",
+};
+
+/**
+ * Every figure here maps to a specific engagement and is stated in the same
+ * terms used in the role bullets below. Nothing aggregated, nothing rounded up.
+ */
+export const headlineMetrics: Metric[] = [
   {
-    id: "1",
-    metric: "Load Time Improved",
-    value: 25,
-    suffix: "%",
-    description: "Faster page loads achieved",
+    value: "25%",
+    label: "Faster page loads",
+    source: "RevHero frontend rearchitecture",
   },
   {
-    id: "2",
-    metric: "Re-renders Reduced",
-    value: 30,
-    suffix: "%",
-    description: "Performance optimization",
+    value: "30%",
+    label: "Fewer re-renders",
+    source: "Scholé state-management overhaul",
   },
   {
-    id: "3",
-    metric: "Developers Mentored",
-    value: 3,
-    suffix: "+",
-    description: "Junior team members guided",
+    value: "20%",
+    label: "Faster data retrieval",
+    source: "Scholé admin dashboard",
   },
   {
-    id: "4",
-    metric: "Years Experience",
-    value: 5,
-    suffix: "+",
-    description: "Building production apps",
-  },
-  {
-    id: "5",
-    metric: "Projects Delivered",
-    value: 20,
-    suffix: "+",
-    description: "Successfully shipped",
-  },
-  {
-    id: "6",
-    metric: "Client Satisfaction",
-    value: 98,
-    suffix: "%",
-    description: "Positive feedback rate",
+    value: "3",
+    label: "Engineers mentored",
+    source: "Frontend lead at Scholé",
   },
 ];
 
-export const skills: Skill[] = [
-  // Languages
-  { name: "TypeScript", level: 90, category: "language" },
-  { name: "JavaScript", level: 95, category: "language" },
-  { name: "Go", level: 75, category: "language" },
-  { name: "Python", level: 70, category: "language" },
-
-  // Frontend
-  { name: "React.js", level: 95, category: "frontend" },
-  { name: "Next.js", level: 90, category: "frontend" },
-  { name: "React Native", level: 85, category: "frontend" },
-  { name: "Redux", level: 90, category: "frontend" },
-
-  // Backend
-  { name: "Node.js", level: 85, category: "backend" },
-  { name: "NestJS", level: 80, category: "backend" },
-  { name: "Express.js", level: 85, category: "backend" },
-  { name: "REST APIs", level: 90, category: "backend" },
-  { name: "Golang", level: 70, category: "backend" },
-
-  // Databases
-  { name: "PostgreSQL", level: 80, category: "database" },
-  { name: "MongoDB", level: 85, category: "database" },
-
-  // Tools
-  { name: "Git", level: 90, category: "tool" },
-  { name: "Docker", level: 70, category: "tool" },
-  { name: "AWS", level: 65, category: "tool" },
-];
-
-export const testimonials: Testimonial[] = [
+export const caseStudies: CaseStudy[] = [
   {
-    id: "1",
-    name: "Viktoryia Dainiak",
-    role: "Product Manager",
-    company: "RevHero",
-    content:
-      "Olufemi transformed our entire frontend architecture. His expertise in React and Next.js helped us achieve a 25% improvement in load times. A truly exceptional engineer who delivers beyond expectations.",
-  },
-  {
-    id: "2",
-    name: "David Oluwaloni",
-    role: "CEO",
-    company: "Scholé Labs",
-    content:
-      "Working with Femi has been outstanding. He not only writes clean, maintainable code but also mentors junior developers effectively. His leadership on our dashboard project was instrumental to its success.",
-  },
-  {
-    id: "3",
-    name: "Uwabor Henry",
-    role: "CEO",
+    id: "finaive",
     company: "Finaive",
-    content:
-      "Femi's work on our AI-powered escrow platform exceeded all expectations. His ability to translate complex business requirements into elegant technical solutions is remarkable.",
+    title: "AI-powered escrow, web and mobile",
+    summary:
+      "An escrow platform that uses AI-driven risk signals to protect both sides of a transaction.",
+    contribution:
+      "Lead frontend for the platform end to end — secure transaction workflows, dispute and status tracking, and the user dashboards that sit on top of them. Also build and debug complex UI on the React Native app. Work directly with stakeholders and backend engineers to turn business rules into interfaces people can actually trust.",
+    role: "Frontend Engineer (Contract)",
+    period: "Jan 2024 — Present",
+    stack: ["React", "Next.js", "TypeScript", "React Native"],
+    quote: {
+      content:
+        "Femi's work on our AI-powered escrow platform exceeded all expectations. His ability to translate complex business requirements into elegant technical solutions is remarkable.",
+      name: "Uwabor Henry",
+      role: "CEO",
+      company: "Finaive",
+    },
+    liveUrl: "https://finaive.com",
+  },
+  {
+    id: "schole",
+    company: "Scholé Labs",
+    title: "Multi-role school management dashboard",
+    summary:
+      "One dashboard serving three distinct audiences — administrators, teachers, and students.",
+    contribution:
+      "Frontend lead: set development strategy, enforced performance and code-quality standards, and mentored three junior engineers. Spearheaded the core dashboard from wireframes to production, then reworked client-side state with Redux Toolkit and React Query to cut redundant fetching and render churn.",
+    role: "Lead Frontend Engineer",
+    period: "Jun 2024 — Sep 2025",
+    stack: ["Next.js", "React", "Redux Toolkit", "React Query"],
+    metrics: [
+      {
+        value: "20%",
+        label: "Faster data retrieval",
+        source: "Admin dashboard",
+      },
+      {
+        value: "30%",
+        label: "Fewer re-renders",
+        source: "State-management rework",
+      },
+      { value: "3", label: "Engineers mentored", source: "Frontend team" },
+    ],
+    quote: {
+      content:
+        "Working with Femi has been outstanding. He not only writes clean, maintainable code but also mentors junior developers effectively. His leadership on our dashboard project was instrumental to its success.",
+      name: "David Oluwaloni",
+      role: "CEO",
+      company: "Scholé Labs",
+    },
+    liveUrl: "https://www.scholelabs.com",
+  },
+  {
+    id: "revhero",
+    company: "RevHero",
+    title: "Ground-up UI redesign and frontend rearchitecture",
+    summary:
+      "A revenue platform whose interface had outgrown its original structure.",
+    contribution:
+      "Led a full UI redesign and rebuilt the frontend on React, Next.js, and TypeScript — replacing ad-hoc styling with a responsive design system that improved usability and accessibility. Partnered with product and UX to keep the visual direction anchored to user feedback, and drove consistency across product modules.",
+    role: "Frontend Engineer — direct, then via RevStar Consulting",
+    period: "Jun 2025 — Present",
+    stack: ["React", "Next.js", "TypeScript", "Design systems"],
+    metrics: [
+      {
+        value: "25%",
+        label: "Faster page loads",
+        source: "Frontend rearchitecture",
+      },
+    ],
+    quote: {
+      content:
+        "Olufemi transformed our entire frontend architecture. His expertise in React and Next.js helped us achieve a 25% improvement in load times.",
+      name: "Viktoryia Dainiak",
+      role: "Product Manager",
+      company: "RevHero",
+    },
+  },
+  {
+    id: "reals-spv",
+    company: "Reals SPV",
+    title: "Data-plan purchasing with live payment flows",
+    summary:
+      "A consumer platform for buying mobile data, wired to payment gateways and third-party vendors.",
+    contribution:
+      "Built the responsive web platform and integrated payment gateways alongside third-party data-vendor APIs. Focused on the unglamorous part that decides whether a payment product works: explicit transaction states, honest error surfaces, and feedback that tells the user exactly where their money is.",
+    role: "Frontend Developer",
+    period: "2023",
+    stack: ["React", "Redux Toolkit", "Payment gateways"],
+    liveUrl: "https://realsspv.com",
   },
 ];
 
-export const blogPosts: BlogPost[] = [
+/**
+ * The one piece of work on this page whose source anyone can read. Client work
+ * proves delivery; this is what backs the "full-stack" claim with something a
+ * reviewer can check line by line instead of taking on trust.
+ *
+ * Every highlight below is verifiable in the repo — do not add one that isn't.
+ */
+export const openSourceProject: OpenSourceProject = {
+  name: "ledgerpay",
+  tagline: "Go · PostgreSQL · personal project",
+  description:
+    "A payments API built around a double-entry ledger, to get the parts of money movement right that are invisible when they work and unrecoverable when they don't. Not production card rails — a study of the correctness patterns real payment systems depend on.",
+  highlights: [
+    "Double-entry ledger with overdraft protection enforced by row-level locking (SELECT … FOR UPDATE)",
+    "Idempotent charge retries keyed on client tokens, so a repeated request cannot double-charge",
+    "Transactional outbox for event delivery — no lost webhooks if the process dies mid-write",
+    "HMAC-SHA256 signed webhooks with retry and dead-letter handling",
+    "Runs as five services under Docker Compose, with CI on every push",
+  ],
+  stack: ["Go", "PostgreSQL", "Docker", "GitHub Actions"],
+  repoUrl: "https://github.com/falola13/ledgerpay",
+};
+
+export const sideProjects: SideProject[] = [
   {
-    id: "1",
-    title: "Optimizing React Performance in Production",
-    excerpt:
-      "Learn practical techniques to improve React app performance, from code splitting to memoization strategies that actually work.",
-    date: "2024-11-15",
-    readTime: "8 min",
-    tags: ["React", "Performance", "JavaScript"],
-    slug: "optimizing-react-performance",
-    published: true,
-  },
-  {
-    id: "2",
-    title: "Building Scalable Next.js Applications",
-    excerpt:
-      "Architecture patterns and best practices for building Next.js apps that scale from MVP to millions of users.",
-    date: "2024-10-28",
-    readTime: "12 min",
-    tags: ["Next.js", "Architecture", "TypeScript"],
-    slug: "scalable-nextjs-apps",
-    published: true,
-  },
-  {
-    id: "3",
-    title: "Lessons from Leading a Frontend Team",
-    excerpt:
-      "Insights and strategies from my experience leading frontend teams, fostering growth, and delivering quality products.",
-    date: "2024-09-20",
-    readTime: "6 min",
-    tags: ["Leadership", "Team Management", "Engineering"],
-    slug: "frontend-team-leadership",
-    published: true,
+    name: "FridayApis",
+    description:
+      "Server-rendered frontend for a developer API platform. Integrated cryptocurrency, translation, and currency-exchange services with resilient error handling; improved initial load performance and SEO.",
+    stack: ["Next.js", "SSR", "REST APIs"],
   },
 ];
 
-export const services: Service[] = [
+/** Roles are listed as stated on the résumé, current engagements first. */
+export const roles: Role[] = [
   {
-    id: "1",
-    title: "Frontend Architecture Design",
-    description:
-      "Design scalable, maintainable frontend architectures for complex applications",
-    features: [
-      "Component architecture planning",
-      "State management strategy",
-      "Performance optimization roadmap",
-      "Technology stack selection",
+    title: "Full-Stack Engineer (Contract)",
+    company: "RevStar Consulting",
+    location: "Tampa, FL",
+    period: "Oct 2025 — Present",
+    current: true,
+    clients: ["RevHero"],
+    bullets: [
+      "Deliver features end to end across frontend and backend layers within a cross-functional consulting team of engineers, AI engineers, and product managers.",
+      "Currently assigned to RevHero — continuing the frontend work started under a direct contract, after the engagement moved onto RevStar.",
+      "Support integration, testing, and release activities to keep production deployments stable.",
     ],
-    icon: Layout,
   },
   {
-    id: "2",
-    title: "React/Next.js Development",
-    description:
-      "Build high-performance web applications with modern React ecosystem",
-    features: [
-      "Custom React applications",
-      "Next.js SSR/SSG implementation",
-      "API integration",
-      "Responsive UI development",
+    title: "Frontend Engineer",
+    company: "RevHero",
+    location: "Tampa, FL",
+    period: "Jun 2025 — Oct 2025",
+    current: false,
+    bullets: [
+      "Led a ground-up UI redesign, introducing a responsive design system that improved usability and accessibility.",
+      "Rebuilt the frontend on React, Next.js, and TypeScript — improving maintainability and cutting load times by over 25%.",
+      "Partnered with product managers and UX designers to align the visual direction with user feedback and business goals.",
+      "Engagement continued under RevStar Consulting from October 2025.",
     ],
-    icon: Code2,
   },
   {
-    id: "3",
-    title: "Team Mentoring & Training",
-    description:
-      "Level up your development team with personalized mentoring and training",
-    features: [
-      "Code review & best practices",
-      "React/TypeScript training",
-      "Agile development coaching",
-      "Technical interview preparation",
+    title: "Lead Frontend Engineer",
+    company: "Scholé Labs",
+    location: "Lagos, NG",
+    period: "Jun 2024 — Sep 2025",
+    current: false,
+    bullets: [
+      "Set frontend development strategy, mentored 3 junior engineers, and enforced code-quality and performance standards.",
+      "Spearheaded the core school management dashboard for administrators, teachers, and students — improving data retrieval time by 20%.",
+      "Implemented state management with Redux Toolkit and React Query, reducing application re-renders by over 30%.",
     ],
-    icon: Users,
   },
   {
-    id: "4",
-    title: "Performance Optimization",
-    description:
-      "Optimize existing applications for speed, efficiency, and user experience",
-    features: [
-      "Performance audits",
-      "Bundle size optimization",
-      "Runtime performance tuning",
-      "SEO improvements",
+    title: "Frontend Engineer (Contract)",
+    company: "Finaive",
+    location: "Lagos, NG / MD, USA",
+    period: "Jan 2024 — Present",
+    current: true,
+    commitment: "~10 h/week",
+    bullets: [
+      "Lead frontend development for an AI-powered escrow platform built around security, transparency, and transaction efficiency.",
+      "Contribute to the React Native mobile app, building complex UI components and resolving critical bugs.",
+      "Translate business requirements into a performant, responsive platform alongside stakeholders and backend engineers.",
     ],
-    icon: Zap,
   },
   {
-    id: "5",
-    title: "Backend & API Development",
-    description:
-      "Build robust, scalable backends and RESTful APIs that power your applications",
-    features: [
-      "Node.js & NestJS services",
-      "Go microservices",
-      "RESTful API design",
-      "Database architecture (PostgreSQL, MongoDB)",
+    title: "Frontend Engineer (Contract)",
+    company: "FridayApis",
+    location: "Remote",
+    period: "Sep 2023 — Dec 2023",
+    current: false,
+    bullets: [
+      "Built and maintained SSR applications with Next.js for a developer-focused API platform, improving initial load performance and SEO.",
+      "Integrated cryptocurrency, translation, and currency-exchange APIs with resilient data handling.",
     ],
-    icon: Server,
   },
   {
-    id: "6",
-    title: "DevOps & Cloud Infrastructure",
-    description:
-      "Deploy and manage applications with modern cloud and containerization tools",
-    features: [
-      "Docker containerization",
-      "AWS cloud services",
-      "CI/CD pipeline setup",
-      "Monitoring & logging",
+    title: "Freelance Web Developer",
+    company: "Self-employed",
+    location: "Remote",
+    period: "Aug 2021 — 2023",
+    current: false,
+    bullets: [
+      "Designed and built custom sites and applications for small businesses and personal brands.",
+      "Owned the full lifecycle: requirements, client communication, timelines, and deployment.",
     ],
-    icon: Database,
+  },
+  {
+    title: "Graphic Designer",
+    company: "Allure Effects LLC",
+    location: "Remote",
+    period: "Feb 2020 — Nov 2021",
+    current: false,
+    bullets: [
+      "Produced brochures, banners, and signage for digital and print, plus full corporate branding packages.",
+    ],
   },
 ];
 
-export const certifications: Certification[] = [
+/**
+ * Current direction. Written as intent and study, not as shipped achievement —
+ * these are things in progress, and the copy says so.
+ */
+export const focus: FocusItem[] = [
   {
-    id: "1",
-    name: "AWS Certified Developer",
+    label: "AWS generative AI certification",
+    detail:
+      "Working through the AWS generative AI certification track — foundation models, prompt engineering, retrieval-augmented generation, and the Bedrock service surface.",
+    status: "in-progress",
+  },
+  {
+    label: "Moving into AI engineering",
+    detail:
+      "Turning five years of product engineering toward AI systems: RAG pipelines, evaluation harnesses, and the application layer that makes model output dependable enough to ship.",
+    status: "active",
+  },
+  {
+    label: "AI features in production products",
+    detail:
+      "Applying that work where I already build — the AI-driven risk and fraud signals inside Finaive's escrow platform are the closest thing I have to a live proving ground.",
+    status: "active",
+  },
+  {
+    label: "Cloud and containers",
+    detail:
+      "Deepening AWS and Docker fundamentals so the AI work has somewhere reliable to run.",
+    status: "next",
+  },
+];
+
+export const stack: StackGroup[] = [
+  {
+    label: "Languages",
+    items: ["TypeScript", "JavaScript", "Go", "Python"],
+  },
+  {
+    label: "Frontend",
+    items: [
+      "React",
+      "Next.js",
+      "React Native",
+      "Redux Toolkit",
+      "React Query",
+      "Tailwind CSS",
+    ],
+  },
+  {
+    label: "Backend",
+    items: ["Node.js", "NestJS", "Express", "REST APIs"],
+  },
+  {
+    label: "Data",
+    items: ["PostgreSQL", "MongoDB"],
+  },
+  {
+    label: "Platform",
+    items: ["AWS", "Docker", "Git", "CI/CD"],
+  },
+  {
+    label: "AI (learning)",
+    items: ["Amazon Bedrock", "RAG", "Prompt engineering"],
+  },
+];
+
+/**
+ * Deliberately short. The three 2023 freeCodeCamp certificates were removed:
+ * next to a lead role at five years' experience they read as an entry-level
+ * signal and dilute the one credential that carries weight. A thin credentials
+ * list next to substantial work is a stronger position than a padded one.
+ */
+export const credentials: Credential[] = [
+  {
+    name: "Generative AI certification",
     issuer: "Amazon Web Services",
-    date: "In Progress",
+    year: "In progress",
     inProgress: true,
   },
-  {
-    id: "2",
-    name: "Responsive Web Design",
-    issuer: "freeCodeCamp",
-    date: "2023",
-    credentialId: "FCC-RWD-2023",
-    url: "https://www.freecodecamp.org/certification/falola13/responsive-web-design",
-  },
-  {
-    id: "3",
-    name: "JavaScript Algorithms and Data Structures",
-    issuer: "freeCodeCamp",
-    date: "2023",
-    credentialId: "FCC-JS-2023",
-    url: "https://www.freecodecamp.org/certification/falola13/javascript-algorithms-and-data-structures",
-  },
-  {
-    id: "4",
-    name: "Front End Development Libraries",
-    issuer: "freeCodeCamp",
-    date: "2023",
-    credentialId: "FCC-FEDL-2023",
-    url: "https://www.freecodecamp.org/certification/falola13/front-end-development-libraries",
-  },
 ];
 
-export const codeSnippets: CodeSnippet[] = [
-  {
-    id: "1",
-    title: "React Performance: Memoization Pattern",
-    language: "tsx",
-    category: "performance",
-    description:
-      "Optimizing expensive computations with useMemo and React.memo",
-    code: `// Memoized component to prevent unnecessary re-renders
-const ExpensiveList = React.memo<{ items: Item[] }>(({ items }) => {
-  // Memoize expensive filtering operation
-  const filteredItems = useMemo(() => {
-    return items
-      .filter(item => item.active)
-      .sort((a, b) => b.priority - a.priority)
-      .slice(0, 100);
-  }, [items]);
-
-  return (
-    <div>
-      {filteredItems.map(item => (
-        <ListItem key={item.id} {...item} />
-      ))}
-    </div>
-  );
-}, (prevProps, nextProps) => {
-  // Custom comparison for deeper optimization
-  return prevProps.items.length === nextProps.items.length &&
-    prevProps.items.every((item, idx) => 
-      item.id === nextProps.items[idx].id
-    );
-});`,
-  },
-  {
-    id: "2",
-    title: "TypeScript: Generic Repository Pattern",
-    language: "typescript",
-    category: "patterns",
-    description: "Implementing a type-safe repository pattern for data access",
-    code: `interface Repository<T extends { id: string }> {
-  getAll(): Promise<T[]>;
-  getById(id: string): Promise<T | null>;
-  create(data: Omit<T, 'id'>): Promise<T>;
-  update(id: string, data: Partial<T>): Promise<T>;
-  delete(id: string): Promise<boolean>;
-}
-
-class BaseRepository<T extends { id: string }> 
-  implements Repository<T> {
-  constructor(private endpoint: string) {}
-
-  async getAll(): Promise<T[]> {
-    const response = await fetch(this.endpoint);
-    return response.json();
-  }
-
-  async getById(id: string): Promise<T | null> {
-    const response = await fetch(\`\${this.endpoint}/\${id}\`);
-    if (!response.ok) return null;
-    return response.json();
-  }
-
-  async create(data: Omit<T, 'id'>): Promise<T> {
-    const response = await fetch(this.endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    return response.json();
-  }
-  
-  // ... other methods
-}`,
-  },
-  {
-    id: "3",
-    title: "Go: Concurrent Task Processing",
-    language: "go",
-    category: "architecture",
-    description: "Processing tasks concurrently with goroutines and channels",
-    code: `func ProcessTasksConcurrently(tasks []Task) []Result {
-    resultChan := make(chan Result, len(tasks))
-    var wg sync.WaitGroup
-
-    // Worker pool pattern
-    workerCount := runtime.NumCPU()
-    taskChan := make(chan Task, len(tasks))
-
-    // Start workers
-    for i := 0; i < workerCount; i++ {
-        wg.Add(1)
-        go func() {
-            defer wg.Done()
-            for task := range taskChan {
-                result := processTask(task)
-                resultChan <- result
-            }
-        }()
-    }
-
-    // Send tasks to workers
-    for _, task := range tasks {
-        taskChan <- task
-    }
-    close(taskChan)
-
-    // Wait and collect results
-    go func() {
-        wg.Wait()
-        close(resultChan)
-    }()
-
-    results := make([]Result, 0, len(tasks))
-    for result := range resultChan {
-        results = append(results, result)
-    }
-    
-    return results
-}`,
-  },
-];
-
-export const timeline: TimelineEvent[] = [
-  {
-    year: 2017,
-    title: "Started Journey in Tech",
-    description: "Completed NCE in Computer Science/Mathematics",
-    type: "education",
-  },
-  {
-    year: 2020,
-    title: "First Professional Role",
-    description: "Joined Allure Effects LLC as Graphic Designer",
-    type: "career",
-  },
-  {
-    year: 2021,
-    title: "Transition to Web Development",
-    description: "Started freelance web development, mastering React.js",
-    type: "career",
-    technologies: ["React", "JavaScript", "HTML/CSS"],
-  },
-  {
-    year: 2023,
-    title: "Full-Stack Evolution",
-    description: "Expanded to backend development with Node.js and Go",
-    type: "skill",
-    technologies: ["Node.js", "Go", "PostgreSQL"],
-  },
-  {
-    year: 2024,
-    title: "Leadership Role",
-    description: "Became Lead Frontend Engineer, mentoring team members",
-    type: "achievement",
-    technologies: ["Next.js", "TypeScript", "React Native"],
-  },
-  {
-    year: 2025,
-    title: "International Expansion",
-    description: "Working with US-based companies (RevStar, RevHero)",
-    type: "career",
-    technologies: ["React", "Next.js", "TypeScript"],
-  },
-];
-
-export const currentlyLearning: CurrentlyLearning[] = [
-  {
-    technology: "Kubernetes & Docker",
-    progress: 45,
-    goal: "Container orchestration for microservices",
-  },
-  {
-    technology: "Web3 & Blockchain",
-    progress: 30,
-    goal: "Smart contract development with Solidity",
-  },
-  {
-    technology: "Rust Programming Language",
-    progress: 25,
-    goal: "AWS Solutions Architect Certification",
-  },
-  {
-    technology: "Machine Learning with Python",
-    progress: 25,
-    goal: "ML integration in web applications",
-  },
-];
-
-export const caseStudies: Project[] = [
-  {
-    id: "cs-1",
-    title: "AI-Powered Escrow Platform",
-    tech: ["React", "Next.js", "TypeScript", "React Native"],
-    description:
-      "Complete redesign and implementation of a secure escrow platform with AI-driven fraud detection.",
-    liveUrl: "https://finaive.com",
-    featured: true,
-    metrics: [
-      { label: "Transaction Success Rate", value: "99.8%" },
-      { label: "Load Time Improvement", value: "40%" },
-      { label: "User Satisfaction", value: "4.8/5" },
-      { label: "Security Incidents", value: "0" },
-    ],
-  },
-  {
-    id: "cs-2",
-    title: "School Management Dashboard",
-    tech: ["Next.js", "Zustand", "React Query"],
-    description:
-      "Multi-role educational platform serving 10,000+ users with real-time data synchronization.",
-    liveUrl: "https://www.scholelabs.com",
-    featured: true,
-    metrics: [
-      { label: "Data Retrieval Speed", value: "+20%" },
-      { label: "Re-renders Reduced", value: "30%" },
-      { label: "Uptime", value: "99.9%" },
-    ],
-  },
-];
+export const education = {
+  qualification: "NCE, Computer Science / Mathematics",
+  year: "2017",
+} as const;

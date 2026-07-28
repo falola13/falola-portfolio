@@ -1,113 +1,91 @@
-# Portfolio Website - Falola Olufemi Adedeji
+# falola.is-a.dev
 
-A modern, responsive portfolio website built with Next.js 14, TypeScript, and Tailwind CSS.
+Personal portfolio for Falola Olufemi Adedeji — full-stack engineer moving into
+AI engineering. Next.js 16 (App Router), TypeScript, Tailwind CSS.
 
-## Features
+Live at **[falola.is-a.dev](https://falola.is-a.dev)**.
 
-- **Modern Tech Stack**: Next.js 14 (App Router), TypeScript, Tailwind CSS
-- **Fully Responsive**: Optimized for mobile, tablet, and desktop
-- **Dark Mode Support**: Automatic theme detection with manual toggle
-- **Smooth Animations**: Scroll-triggered animations and micro-interactions
-- **Performance Optimized**: Fast loading times with optimized fonts and images
-- **SEO Ready**: Proper meta tags and structured data
+## Editorial rules
 
-## Getting Started
+These are the constraints the site is built to. They matter more than the code.
 
-### Prerequisites
+1. **Six sections, no more.** Hero, Selected work, Experience, Focus, About,
+   Contact. Every addition has to displace something, not append to it.
+2. **No unverifiable numbers.** Every metric names the engagement it came from
+   (see `headlineMetrics` and `CaseStudy.metrics` in `data/portfolio-data.ts`,
+   where `source` is a required field). No aggregate satisfaction scores, no
+   self-rated skill percentages, nothing that can't be defended in an interview.
+3. **In-progress work is labelled in-progress.** The Focus section states what's
+   being learned rather than implying it's mastered.
+4. **Nothing ships that only exists as a placeholder.** No "coming soon" posts.
 
-- Node.js 18+ 
-- npm, yarn, or pnpm
+## Running it
 
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/portfolio.git
-cd portfolio
-```
-
-2. Install dependencies:
 ```bash
 npm install
-# or
-yarn install
-# or
-pnpm install
-```
-
-3. Run the development server:
-```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Building for Production
+Then open http://localhost:3000.
 
 ```bash
-npm run build
-npm run start
+npm run build      # production build
+npm run start      # serve the production build
+npm run typecheck  # tsc --noEmit
+npm run lint       # eslint (flat config; `next lint` was removed in Next 16)
 ```
 
-## Project Structure
+## Environment
+
+The contact form posts to [Web3Forms](https://web3forms.com) through an internal
+route, so the access key never reaches the browser.
 
 ```
-portfolio/
-├── app/
-│   ├── layout.tsx      # Root layout with metadata
-│   ├── page.tsx        # Main portfolio page
-│   ├── globals.css     # Global styles and Tailwind
-│   └── fonts.ts        # Font configuration
-├── components/
-│   ├── Hero.tsx        # Hero section
-│   ├── Navigation.tsx  # Navigation bar
-│   ├── Experience.tsx  # Work experience section
-│   ├── Projects.tsx    # Projects showcase
-│   ├── ...            # Other components
-├── lib/
-│   └── utils.ts       # Utility functions
-└── public/            # Static assets
+WEB3FORMS_ACCESS_KEY=your_key_here
 ```
 
-## Customization
+Without it, `/api/contact` returns a 503 and a friendly message; the page still
+offers the direct mailto fallback.
 
-### Colors
+## Structure
 
-Edit the CSS variables in `app/globals.css` to customize the color scheme:
-
-```css
-:root {
-  --primary: 262 83% 58%;
-  /* Add your custom colors */
-}
+```
+app/
+├── layout.tsx            # Metadata, fonts, JSON-LD, blocking theme script
+├── page.tsx              # Section composition
+├── globals.css           # Design tokens + component/utility layers
+├── icon.tsx              # Favicon, generated via next/og
+├── favicon.ico           # Static fallback so /favicon.ico doesn't 404
+├── opengraph-image.tsx   # Social card, generated at build time
+├── sitemap.ts, robots.ts
+└── api/contact/route.ts  # Validates, then forwards to Web3Forms
+components/
+├── Nav, Hero, Work, Experience, Focus, About, Contact, Footer
+├── Section.tsx           # Shared section chrome (eyebrow, heading, rule)
+├── Reveal.tsx            # Scroll reveal — fails open, respects reduced motion
+├── ThemeToggle.tsx       # Stateless; reads/writes the html.dark class
+└── icons.tsx             # Inlined brand marks (lucide-react dropped them)
+data/portfolio-data.ts    # All copy and content lives here
+types/index.ts            # Content types
 ```
 
-### Content
+## Notable implementation details
 
-All content is directly embedded in the components. To update:
-- Edit experience in `components/Experience.tsx`
-- Update projects in `components/Projects.tsx`
-- Modify skills in `components/TechnicalSkills.tsx`
-
-## Technologies Used
-
-- **Next.js 14**: React framework with App Router
-- **TypeScript**: Type-safe JavaScript
-- **Tailwind CSS**: Utility-first CSS framework
-- **Lucide React**: Modern icon library
-- **clsx & tailwind-merge**: Utility for conditional CSS classes
-
-## License
-
-MIT License
+- **No theme flash.** The `dark` class is set by a blocking inline script in
+  `<head>` before first paint, not in an effect. `ThemeToggle` holds no state and
+  swaps its icon with `dark:` variants, so it can't disagree with the DOM.
+- **Reveals fail open.** `Reveal` uses CSS transitions rather than keyframes (a
+  transition that never runs lands on its end value; a keyframe starting at
+  `opacity: 0` freezes there), hides only under `motion-safe`, and has a 1.2s
+  failsafe. Content can't get stranded invisible.
+- **Content is data, not markup.** Copy lives in `data/portfolio-data.ts`, so
+  editing the site doesn't mean editing components.
+- **Generated OG card.** `app/opengraph-image.tsx` builds the social card from
+  the same data as the page, so the two can't drift. No remote fonts, so it
+  builds offline.
 
 ## Contact
 
-Falola Olufemi Adedeji
 - Email: femi.deji0@gmail.com
-- LinkedIn: [linkedin.com/in/falola-olufemi](https://linkedin.com/in/falola-olufemi)
-- GitHub: [github.com/femi-deji](https://github.com/falola13)
+- GitHub: [github.com/falola13](https://github.com/falola13)
+- LinkedIn: [falola-olufemi](https://www.linkedin.com/in/falola-olufemi-87292625b)

@@ -1,153 +1,112 @@
-// Single Responsibility: Each interface has one reason to change
-// Interface Segregation: Clients don't depend on interfaces they don't use
+/**
+ * Content types for the portfolio.
+ *
+ * Rule for everything below: a field only exists if there is a real, defensible
+ * value to put in it. No self-rated proficiency scores, no aggregate
+ * satisfaction figures, no metric that cannot be traced to shipped work.
+ */
 
-export interface ContactInfo {
-  phone: string
-  email: string
-  linkedin: string
-  github: string
-  location: string
+export interface Contact {
+  email: string;
+  location: string;
+  timezone: string;
+  /**
+   * Stated in terms of the hiring manager's calendar, not mine. "UTC+1" makes a
+   * European reader do arithmetic; naming their cities does the work for them.
+   */
+  overlap: string;
+  linkedin: string;
+  github: string;
+  resume: string;
 }
 
-export interface Achievement {
-  id: string
-  metric: string
-  value: number
-  suffix?: string
-  prefix?: string
-  description: string
+/** A single outcome, sourced from a specific engagement. */
+export interface Metric {
+  value: string;
+  label: string;
+  /** Where the number comes from, so it can be defended in conversation. */
+  source: string;
 }
 
-export interface SkillCategory {
-  icon: React.ComponentType<{ className?: string }>
-  title: string
-  skills: string[]
-  color: string
+export interface Quote {
+  content: string;
+  name: string;
+  role: string;
+  company: string;
 }
 
-export interface Skill {
-  name: string
-  level: number // 0-100
-  category: 'frontend' | 'backend' | 'language' | 'tool' | 'database'
+export interface CaseStudy {
+  id: string;
+  company: string;
+  title: string;
+  /** One line on what the product is. */
+  summary: string;
+  /** What the work actually involved. Two to three sentences, no filler. */
+  contribution: string;
+  role: string;
+  period: string;
+  stack: string[];
+  metrics?: Metric[];
+  quote?: Quote;
+  liveUrl?: string;
 }
 
-export interface Experience {
-  id: string
-  title: string
-  company: string
-  location: string
-  date: string
-  bullets: string[]
-  technologies?: string[]
+export interface SideProject {
+  name: string;
+  description: string;
+  stack: string[];
+  liveUrl?: string;
 }
 
-export interface Project {
-  id: string
-  title: string
-  tech: string[]
-  description: string
-  liveUrl?: string
-  githubUrl?: string
-  caseStudyUrl?: string
-  image?: string
-  featured?: boolean
-  metrics?: ProjectMetric[]
+/**
+ * A personal project whose source is public. Kept as its own type rather than a
+ * flag on SideProject because the whole point is different: client work proves
+ * I ship, readable code proves *how* I build. Remote hiring is trust at a
+ * distance, and this is the cheapest trust on offer.
+ */
+export interface OpenSourceProject {
+  name: string;
+  /** Short technical framing, e.g. the language and datastore. */
+  tagline: string;
+  description: string;
+  /** Specific engineering properties, each independently checkable in the repo. */
+  highlights: string[];
+  stack: string[];
+  repoUrl: string;
 }
 
-export interface ProjectMetric {
-  label: string
-  value: string
+export interface Role {
+  title: string;
+  company: string;
+  location: string;
+  period: string;
+  current: boolean;
+  /**
+   * Weekly commitment for concurrent contracts. Ambiguous overlap between
+   * several "Present" roles reads as overemployment risk to a remote employer;
+   * stating the hours removes the doubt instead of leaving it to be guessed.
+   */
+  commitment?: string;
+  /** Client engagements delivered through this employer, if any. */
+  clients?: string[];
+  bullets: string[];
 }
 
-export interface Education {
-  id: string
-  degree: string
-  institution: string
-  year: string
+export interface FocusItem {
+  label: string;
+  detail: string;
+  status: "in-progress" | "active" | "next";
 }
 
-export interface Testimonial {
-  id: string
-  name: string
-  role: string
-  company: string
-  content: string
-  image?: string
+export interface Credential {
+  name: string;
+  issuer: string;
+  year: string;
+  url?: string;
+  inProgress?: boolean;
 }
 
-export interface BlogPost {
-  id: string
-  title: string
-  excerpt: string
-  date: string
-  readTime: string
-  tags: string[]
-  slug: string
-  published: boolean
-}
-
-export interface Service {
-  id: string
-  title: string
-  description: string
-  features: string[]
-  icon: React.ComponentType<{ className?: string }>
-}
-
-export interface Certification {
-  id: string
-  name: string
-  issuer: string
-  date: string
-  credentialId?: string
-  url?: string
-  inProgress?: boolean
-}
-
-export interface CodeSnippet {
-  id: string
-  title: string
-  language: 'typescript' | 'javascript' | 'go' | 'python' | 'jsx' | 'tsx'
-  code: string
-  description: string
-  category: 'performance' | 'patterns' | 'architecture' | 'algorithms'
-}
-
-export interface TimelineEvent {
-  year: number
-  title: string
-  description: string
-  type: 'education' | 'career' | 'skill' | 'achievement'
-  technologies?: string[]
-}
-
-export interface CurrentlyLearning {
-  technology: string
-  progress: number
-  goal: string
-}
-
-// Repository pattern interfaces
-export interface IDataRepository<T> {
-  getAll(): Promise<T[]>
-  getById(id: string): Promise<T | null>
-  create?(data: T): Promise<T>
-  update?(id: string, data: Partial<T>): Promise<T>
-  delete?(id: string): Promise<boolean>
-}
-
-// Observer pattern for availability status
-export interface IAvailabilityObserver {
-  update(status: AvailabilityStatus): void
-}
-
-export interface AvailabilityStatus {
-  available: boolean
-  nextAvailableDate?: string
-  currentProject?: string
-}
-
-// Factory pattern for creating components
-export interface IComponentFactory<T> {
-  create(props: T): React.ReactElement
+export interface StackGroup {
+  label: string;
+  items: string[];
 }

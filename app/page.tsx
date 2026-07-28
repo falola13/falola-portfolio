@@ -1,52 +1,34 @@
-import { Navigation } from '@/components/Navigation'
-import { Hero } from '@/components/Hero'
-import { ProfessionalSummary } from '@/components/ProfessionalSummary'
-import { Achievements } from '@/components/Achievements'
-import { TechnicalSkills } from '@/components/TechnicalSkills'
-import { SkillsRadar } from '@/components/SkillsRadar'
-import { Timeline } from '@/components/Timeline'
-import { Experience } from '@/components/Experience'
-import { CaseStudies } from '@/components/CaseStudies'
-import { Projects } from '@/components/Projects'
-import { Services } from '@/components/Services'
-import { CodeSnippets } from '@/components/CodeSnippets'
-import { Blog } from '@/components/Blog'
-import { Testimonials } from '@/components/Testimonials'
-import { Certifications } from '@/components/Certifications'
-import { CurrentlyLearning } from '@/components/CurrentlyLearning'
-import { Education } from '@/components/Education'
-import { ContactForm } from '@/components/ContactForm'
-import { Footer } from '@/components/Footer'
-import { ThemeToggle } from '@/components/ThemeToggle'
-import { ScrollToTop } from '@/components/ScrollToTop'
-import { AvailabilityStatus } from '@/components/AvailabilityStatus'
+import { Nav } from "@/components/Nav";
+import { Hero } from "@/components/Hero";
+import { Work } from "@/components/Work";
+import { Experience } from "@/components/Experience";
+import { Focus } from "@/components/Focus";
+import { About } from "@/components/About";
+import { Contact } from "@/components/Contact";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <Navigation />
-      <ThemeToggle />
-      <ScrollToTop />
-      <AvailabilityStatus />
-      
-      <Hero />
-      <ProfessionalSummary />
-      <Achievements />
-      <Timeline />
-      <TechnicalSkills />
-      <SkillsRadar />
-      <Experience />
-      <CaseStudies />
-      <Projects />
-      <Services />
-      <CodeSnippets />
-      <Blog />
-      <Testimonials />
-      <Certifications />
-      <CurrentlyLearning />
-      <Education />
-      <ContactForm />
+    <>
+      <a
+        href="#work"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-foreground focus:px-4 focus:py-2 focus:text-sm focus:text-background"
+      >
+        Skip to content
+      </a>
+
+      <Nav />
+
+      <main>
+        <Hero />
+        <Work />
+        <Experience />
+        <Focus />
+        <About />
+        <Contact />
+      </main>
+
       <Footer />
-    </main>
-  )
+    </>
+  );
 }
