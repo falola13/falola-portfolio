@@ -91,12 +91,21 @@ export function About() {
 
           <Reveal delay={140}>
             <p className="eyebrow">Education</p>
-            <p className="mt-5 text-[0.9375rem] leading-snug text-muted-foreground">
-              {education.qualification}
-              <span className="mt-0.5 block font-mono text-[0.6875rem] text-subtle-foreground">
-                {education.year}
-              </span>
-            </p>
+            <ul className="mt-5 space-y-3">
+              {education.map((item) => (
+                <li
+                  key={item.qualification}
+                  className="text-[0.9375rem] leading-snug text-muted-foreground"
+                >
+                  {item.qualification}
+                  <span className="mt-0.5 block font-mono text-[0.6875rem] text-subtle-foreground">
+                    {item.institution
+                      ? `${item.institution} · ${item.year}`
+                      : item.year}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </Reveal>
 
           <Reveal delay={200}>

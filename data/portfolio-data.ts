@@ -2,6 +2,7 @@ import {
   CaseStudy,
   Contact,
   Credential,
+  Education,
   FocusItem,
   Metric,
   OpenSourceProject,
@@ -356,7 +357,15 @@ export const credentials: Credential[] = [
   },
 ];
 
-export const education = {
-  qualification: "NCE, Computer Science / Mathematics",
-  year: "2017",
-} as const;
+/** Most recent first. */
+export const education: Education[] = [
+  {
+    qualification: "B.Sc. Statistics",
+    institution: "Federal University of Agriculture, Ogun State",
+    year: "2023",
+  },
+  {
+    qualification: "NCE, Computer Science / Mathematics",
+    year: "2017",
+  },
+];

@@ -98,6 +98,13 @@ export interface FocusItem {
   status: "in-progress" | "active" | "next";
 }
 
+export interface Education {
+  qualification: string;
+  /** Awarding institution. Omitted where the site doesn't name one. */
+  institution?: string;
+  year: string;
+}
+
 export interface Credential {
   name: string;
   issuer: string;
