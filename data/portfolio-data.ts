@@ -281,16 +281,6 @@ export const roles: Role[] = [
       "Owned the full lifecycle: requirements, client communication, timelines, and deployment.",
     ],
   },
-  {
-    title: "Graphic Designer",
-    company: "Allure Effects LLC",
-    location: "Remote",
-    period: "Feb 2020 — Nov 2021",
-    current: false,
-    bullets: [
-      "Produced brochures, banners, and signage for digital and print, plus full corporate branding packages.",
-    ],
-  },
 ];
 
 /**
