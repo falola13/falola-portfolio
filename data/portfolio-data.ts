@@ -20,8 +20,8 @@ export const profile = {
   title: "Full-Stack Engineer",
   /** The one line that has to do the most work on the page. */
   headline:
-    "I build production web and mobile products — and I'm moving that work into AI engineering.",
-  lede: "Full-stack engineer with five years shipping user-facing products across fintech, edtech, and consumer SaaS. Frontend architecture in React, Next.js, and React Native; backend delivery in Node.js, NestJS, and Go. Now taking that into AI engineering, where a statistics degree is finally earning its keep.",
+    "I build software that moves money — and the bookkeeping that proves it moved.",
+  lede: "Full-stack engineer, five years, mostly in fintech — escrow, payments, and data purchasing. Frontend architecture in React, Next.js, and React Native; backend in Go, Node.js, and NestJS, including a double-entry payments ledger written to get the correctness patterns right. Now holding AI work to the same standard, where a statistics degree turns out to be the useful half: output that is measured rather than eyeballed.",
   availability: "Open to full-stack and AI engineering roles",
   /**
    * The résumé opener. Deliberately different from the web lede: a recruiter
@@ -29,7 +29,7 @@ export const profile = {
    * the first three lines, where the web page can afford a slower opening.
    */
   resumeSummary:
-    "Full-stack engineer with five years shipping user-facing web and mobile products across fintech, edtech, and consumer SaaS. Frontend architecture in React, Next.js, and React Native; backend delivery in Node.js, NestJS, Go, and PostgreSQL. Have led a small frontend team and mentored three engineers. Statistics graduate now moving into AI engineering, with an AWS generative AI certification in progress and a focus on the evaluation work that decides whether model output is dependable enough to ship.",
+    "Full-stack engineer with five years shipping user-facing web and mobile products, mostly in fintech — escrow, payments, and data purchasing. Frontend architecture in React, Next.js, and React Native; backend delivery in Go, Node.js, NestJS, and PostgreSQL, including a double-entry payments ledger built around idempotent retries, transactional outbox delivery, and overdraft protection under row-level locking. Have led a small frontend team and mentored three engineers. Statistics graduate now working in AI evaluation: labelled sets, per-class precision and recall, and regression gates that fail the build when quality drops.",
 } as const;
 
 export const contact: Contact = {
