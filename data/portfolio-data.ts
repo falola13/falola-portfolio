@@ -20,8 +20,8 @@ export const profile = {
   title: "Full-Stack Engineer",
   /** The one line that has to do the most work on the page. */
   headline:
-    "I build software that moves money — and the bookkeeping that proves it moved.",
-  lede: "Full-stack engineer, five years, mostly in fintech — escrow, payments, and data purchasing. Frontend architecture in React, Next.js, and React Native; backend in Go, Node.js, and NestJS, including a double-entry payments ledger written to get the correctness patterns right. Now holding AI work to the same standard, where a statistics degree turns out to be the useful half: output that is measured rather than eyeballed.",
+    "I build products where being wrong is expensive — and I hold model output to the same standard.",
+  lede: "Full-stack engineer with five years shipping user-facing products across fintech, edtech, and consumer SaaS. Frontend architecture in React, Next.js, and React Native; backend in Go, Node.js, and NestJS. The through-line is the part nobody demos: explicit states, honest error surfaces, and claims a reviewer can check instead of taking on trust. Now applying that standard to AI, where a statistics degree turns out to be the useful half.",
   availability: "Open to full-stack and AI engineering roles",
   /**
    * The résumé opener. Deliberately different from the web lede: a recruiter
@@ -29,7 +29,7 @@ export const profile = {
    * the first three lines, where the web page can afford a slower opening.
    */
   resumeSummary:
-    "Full-stack engineer with five years shipping user-facing web and mobile products, mostly in fintech — escrow, payments, and data purchasing. Frontend architecture in React, Next.js, and React Native; backend delivery in Go, Node.js, NestJS, and PostgreSQL, including a double-entry payments ledger built around idempotent retries, transactional outbox delivery, and overdraft protection under row-level locking. Have led a small frontend team and mentored three engineers. Statistics graduate now working in AI evaluation: labelled sets, per-class precision and recall, and regression gates that fail the build when quality drops.",
+    "Full-stack engineer with five years shipping user-facing web and mobile products across fintech, edtech, and consumer SaaS. Frontend architecture in React, Next.js, and React Native; backend delivery in Go, Node.js, NestJS, and PostgreSQL, including a double-entry payments ledger built around idempotent retries, transactional outbox delivery, and overdraft protection under row-level locking. Have led a small frontend team and mentored three engineers. Statistics graduate now working in AI evaluation — labelled sets, per-class precision and recall, and regression gates that fail the build when quality drops — with an AWS generative AI certification in progress.",
 } as const;
 
 export const contact: Contact = {
