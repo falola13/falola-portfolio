@@ -200,6 +200,7 @@ export const openSourceProjects: OpenSourceProject[] = [
     ],
     stack: ["Go", "PostgreSQL", "Docker", "GitHub Actions"],
     repoUrl: "https://github.com/falola13/ledgerpay",
+    liveUrl: "https://ledgerpay-gold.vercel.app",
     resumeDescription:
       "Payments API built around a double-entry ledger: idempotent charge retries keyed on client tokens, a transactional outbox so no webhook is lost if the process dies mid-write, HMAC-signed delivery with retry and dead-letter handling, and overdraft protection enforced by row-level locking. Runs as five services under Docker Compose with CI on every push, plus a Next.js operations dashboard covered by Playwright tests.",
   },
