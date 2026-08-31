@@ -75,6 +75,16 @@ export interface OpenSourceProject {
   highlights: string[];
   stack: string[];
   repoUrl: string;
+  /** A running instance, where one exists. A repo asks for trust; a link doesn't. */
+  liveUrl?: string;
+  /**
+   * The résumé rendering of the same project. One dense paragraph, because the
+   * document has no room for a bullet list and a recruiter skimming it needs the
+   * claims in prose. It lives here rather than in the résumé route: the site and
+   * the PDF drifted once already, which is the whole reason that page is
+   * generated from this file.
+   */
+  resumeDescription: string;
 }
 
 export interface Role {

@@ -1,10 +1,10 @@
 import { ArrowUpRight } from "lucide-react";
 import {
   caseStudies,
-  openSourceProject,
+  openSourceProjects,
   sideProjects,
 } from "@/data/portfolio-data";
-import { CaseStudy } from "@/types";
+import { CaseStudy, OpenSourceProject } from "@/types";
 import { cn } from "@/lib/utils";
 import { Reveal } from "./Reveal";
 import { Section } from "./Section";
@@ -92,6 +92,76 @@ function CaseStudyEntry({ study, index }: { study: CaseStudy; index: number }) {
   );
 }
 
+function OpenSourceEntry({ project }: { project: OpenSourceProject }) {
+  return (
+    <div className="rounded-[var(--radius)] border border-border bg-surface p-6 sm:p-8">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+        <h3 className="font-mono text-title text-foreground">{project.name}</h3>
+        <p className="font-mono text-[0.6875rem] uppercase tracking-[0.1em] text-subtle-foreground">
+          {project.tagline}
+        </p>
+      </div>
+
+      <p className="mt-4 max-w-prose text-lede text-muted-foreground text-pretty">
+        {project.description}
+      </p>
+
+      <ul className="mt-6 space-y-2.5">
+        {project.highlights.map((highlight) => (
+          <li
+            key={highlight}
+            className="flex gap-2.5 text-[0.9375rem] leading-relaxed text-muted-foreground text-pretty"
+          >
+            <span
+              aria-hidden="true"
+              className="mt-[0.6em] size-1 shrink-0 rounded-full bg-accent"
+            />
+            {highlight}
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
+        <p className="font-mono text-[0.6875rem] text-subtle-foreground">
+          {project.stack.join(" · ")}
+        </p>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          {/*
+            A running instance goes first: a reviewer who clicks nothing else
+            will click a live link, and it costs them nothing to check.
+          */}
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-1.5 text-[0.9375rem] text-accent transition-colors duration-200 hover:text-foreground"
+            >
+              Live demo
+              <ArrowUpRight
+                className="size-3.5 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                strokeWidth={2}
+              />
+            </a>
+          )}
+          <a
+            href={project.repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-1.5 text-[0.9375rem] text-accent transition-colors duration-200 hover:text-foreground"
+          >
+            Read the source
+            <ArrowUpRight
+              className="size-3.5 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              strokeWidth={2}
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Work() {
   return (
     <Section
@@ -107,59 +177,17 @@ export function Work() {
       </div>
 
       {/*
-        Placed directly after the client work and given real weight: it's the
-        only entry here whose source a reviewer can actually read, which makes
-        it the most load-bearing evidence on the page for remote hiring.
+        Placed directly after the client work and given real weight: these are
+        the only entries here whose source a reviewer can actually read, which
+        makes them the most load-bearing evidence on the page for remote hiring.
       */}
       <Reveal className="mt-24">
         <div className="border-t border-border pt-8">
           <p className="eyebrow">Code you can read</p>
-          <div className="mt-8 rounded-[var(--radius)] border border-border bg-surface p-6 sm:p-8">
-            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
-              <h3 className="font-mono text-title text-foreground">
-                {openSourceProject.name}
-              </h3>
-              <p className="font-mono text-[0.6875rem] uppercase tracking-[0.1em] text-subtle-foreground">
-                {openSourceProject.tagline}
-              </p>
-            </div>
-
-            <p className="mt-4 max-w-prose text-lede text-muted-foreground text-pretty">
-              {openSourceProject.description}
-            </p>
-
-            <ul className="mt-6 space-y-2.5">
-              {openSourceProject.highlights.map((highlight) => (
-                <li
-                  key={highlight}
-                  className="flex gap-2.5 text-[0.9375rem] leading-relaxed text-muted-foreground text-pretty"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="mt-[0.6em] size-1 shrink-0 rounded-full bg-accent"
-                  />
-                  {highlight}
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
-              <p className="font-mono text-[0.6875rem] text-subtle-foreground">
-                {openSourceProject.stack.join(" · ")}
-              </p>
-              <a
-                href={openSourceProject.repoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-1.5 text-[0.9375rem] text-accent transition-colors duration-200 hover:text-foreground"
-              >
-                Read the source
-                <ArrowUpRight
-                  className="size-3.5 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  strokeWidth={2}
-                />
-              </a>
-            </div>
+          <div className="mt-8 space-y-6">
+            {openSourceProjects.map((project) => (
+              <OpenSourceEntry key={project.name} project={project} />
+            ))}
           </div>
         </div>
       </Reveal>

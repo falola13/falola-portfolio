@@ -4,6 +4,7 @@ import {
   contact,
   credentials,
   education,
+  openSourceProjects,
   profile,
   roles,
   stack,
@@ -28,16 +29,21 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-/** ledgerpay is the one piece of work a reader can actually inspect. */
-const projects = [
-  {
-    name: "ledgerpay",
-    stack: "Go · PostgreSQL · Docker",
-    url: "github.com/falola13/ledgerpay",
-    description:
-      "Payments API built around a double-entry ledger: idempotent charge retries keyed on client tokens, a transactional outbox so no webhook is lost if the process dies mid-write, HMAC-signed delivery with retry and dead-letter handling, and overdraft protection enforced by row-level locking. Runs as five services under Docker Compose with CI on every push, plus a Next.js operations dashboard covered by Playwright tests.",
-  },
-];
+const bareUrl = (url: string) => url.replace(/^https?:\/\/(www\.)?/, "");
+
+/**
+ * The public repos — the work a reader can actually inspect. Derived from the
+ * same data as the site rather than restated here: this list was hard-coded
+ * once and immediately became the thing most likely to drift, which is the
+ * exact failure this page exists to prevent.
+ */
+const projects = openSourceProjects.map((project) => ({
+  name: project.name,
+  stack: project.stack.join(" · "),
+  url: bareUrl(project.repoUrl),
+  liveUrl: project.liveUrl ? bareUrl(project.liveUrl) : undefined,
+  description: project.resumeDescription,
+}));
 
 function Rule({ children }: { children: string }) {
   return (
@@ -119,6 +125,7 @@ export default function ResumePage() {
               {project.name}{" "}
               <span className="font-normal text-neutral-600">
                 — {project.stack} — {project.url}
+                {project.liveUrl && ` · ${project.liveUrl}`}
               </span>
             </h3>
             <p>{project.description}</p>

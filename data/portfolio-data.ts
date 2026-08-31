@@ -175,27 +175,53 @@ export const caseStudies: CaseStudy[] = [
 ];
 
 /**
- * The one piece of work on this page whose source anyone can read. Client work
- * proves delivery; this is what backs the "full-stack" claim with something a
- * reviewer can check line by line instead of taking on trust.
+ * The work on this page whose source anyone can read. Client work proves
+ * delivery; this is what backs the engineering claims with something a reviewer
+ * can check line by line instead of taking on trust.
+ *
+ * Two entries, deliberately: ledgerpay is the backend-correctness argument and
+ * dispute-triage is the AI-engineering one. The move into AI is stated as intent
+ * everywhere else on this page — this is the only place it is stated as code.
  *
  * Every highlight below is verifiable in the repo — do not add one that isn't.
  */
-export const openSourceProject: OpenSourceProject = {
-  name: "ledgerpay",
-  tagline: "Go · PostgreSQL · personal project",
-  description:
-    "A payments API built around a double-entry ledger, to get the parts of money movement right that are invisible when they work and unrecoverable when they don't. Not production card rails — a study of the correctness patterns real payment systems depend on.",
-  highlights: [
-    "Double-entry ledger with overdraft protection enforced by row-level locking (SELECT … FOR UPDATE)",
-    "Idempotent charge retries keyed on client tokens, so a repeated request cannot double-charge",
-    "Transactional outbox for event delivery — no lost webhooks if the process dies mid-write",
-    "HMAC-SHA256 signed webhooks with retry and dead-letter handling",
-    "Runs as five services under Docker Compose, with CI on every push",
-  ],
-  stack: ["Go", "PostgreSQL", "Docker", "GitHub Actions"],
-  repoUrl: "https://github.com/falola13/ledgerpay",
-};
+export const openSourceProjects: OpenSourceProject[] = [
+  {
+    name: "ledgerpay",
+    tagline: "Go · PostgreSQL · personal project",
+    description:
+      "A payments API built around a double-entry ledger, to get the parts of money movement right that are invisible when they work and unrecoverable when they don't. Not production card rails — a study of the correctness patterns real payment systems depend on.",
+    highlights: [
+      "Double-entry ledger with overdraft protection enforced by row-level locking (SELECT … FOR UPDATE)",
+      "Idempotent charge retries keyed on client tokens, so a repeated request cannot double-charge",
+      "Transactional outbox for event delivery — no lost webhooks if the process dies mid-write",
+      "HMAC-SHA256 signed webhooks with retry and dead-letter handling",
+      "Runs as five services under Docker Compose, with CI on every push",
+    ],
+    stack: ["Go", "PostgreSQL", "Docker", "GitHub Actions"],
+    repoUrl: "https://github.com/falola13/ledgerpay",
+    resumeDescription:
+      "Payments API built around a double-entry ledger: idempotent charge retries keyed on client tokens, a transactional outbox so no webhook is lost if the process dies mid-write, HMAC-signed delivery with retry and dead-letter handling, and overdraft protection enforced by row-level locking. Runs as five services under Docker Compose with CI on every push, plus a Next.js operations dashboard covered by Playwright tests.",
+  },
+  {
+    name: "dispute-triage",
+    tagline: "Python · Amazon Bedrock · personal project",
+    description:
+      "An LLM classifier for payment disputes, built the other way round: calling the model is the easy half, so the project is really the evaluation harness that decides whether its output is good enough to act on. The best prompt scores a perfect macro F1 — which the repo reports as a problem rather than a result, because a benchmark everything passes has stopped measuring anything.",
+    highlights: [
+      "90 hand-written labelled disputes across six categories, with tests that fail if a class thins out or the deliberately ambiguous cases go missing",
+      "Precision, recall and F1 implemented rather than imported, and macro-averaged — the rare classes are the expensive ones to get wrong",
+      "Off-format and unparseable answers are scored as wrong, never quietly dropped; only an exact label token is accepted",
+      "Two prompt versions scored on the same set, with a diff that names the individual cases whose verdict moved",
+      "A zero-cost keyword baseline runs in CI, so the harness and its regression gate are exercised on every push without credentials",
+      "Paid runs estimate their spend up front and refuse to exceed a cap, and a failed sweep retries only the cases that failed",
+    ],
+    stack: ["Python", "Amazon Bedrock", "pytest"],
+    repoUrl: "https://github.com/falola13/dispute-triage",
+    resumeDescription:
+      "LLM classifier for payment disputes whose real subject is evaluation: 90 hand-written labelled cases across six categories, precision/recall/F1 implemented rather than imported, prompt versions scored against each other with a case-level diff, and a zero-cost keyword baseline that exercises the harness and its regression gate in CI on every push. Off-format answers count as wrong rather than being dropped, and paid runs estimate spend up front and refuse to exceed a cap. The strongest prompt reaches a perfect macro F1, reported as a saturated benchmark rather than a headline.",
+  },
+];
 
 export const sideProjects: SideProject[] = [
   {
