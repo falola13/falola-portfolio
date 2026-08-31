@@ -43,7 +43,7 @@ export const contact: Contact = {
   timezone: "WAT (UTC+1)",
   overlap:
     "Same working hours as Berlin, Paris, and Amsterdam — full overlap with European teams, and afternoons overlap with US Eastern.",
-  linkedin: "https://www.linkedin.com/in/falola-olufemi-87292625b",
+  linkedin: "https://www.linkedin.com/in/falola-olufemi",
   github: "https://github.com/falola13",
   /**
    * The generated page, not a checked-in PDF. The old PDF drifted out of sync

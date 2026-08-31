@@ -59,7 +59,7 @@ export default function ResumePage() {
     contact.phone,
     "falola.is-a.dev",
     "github.com/falola13",
-    "linkedin.com/in/falola-olufemi",
+    contact.linkedin.replace(/^https?:\/\/(www\.)?/, ""),
   ].filter(Boolean);
 
   return (
