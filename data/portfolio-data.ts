@@ -29,7 +29,7 @@ export const profile = {
    * the first three lines, where the web page can afford a slower opening.
    */
   resumeSummary:
-    "Full-stack engineer with five years shipping user-facing web and mobile products across fintech, edtech, and consumer SaaS. Frontend architecture in React, Next.js, and React Native; backend delivery in Go, Node.js, NestJS, and PostgreSQL, including a double-entry payments ledger built around idempotent retries, transactional outbox delivery, and overdraft protection under row-level locking. Have led a small frontend team and mentored three engineers. Statistics graduate now working in AI evaluation — labelled sets, per-class precision and recall, and regression gates that fail the build when quality drops — with an AWS generative AI certification in progress.",
+    "Full-stack engineer with five years shipping user-facing web and mobile products across fintech, edtech, and consumer SaaS. Frontend architecture in React, Next.js, and React Native; backend delivery in Supabase, PostgreSQL, Node.js, NestJS, and Go. At Finaive I work across the whole stack — schema migrations, edge functions, and the Next.js app — and built the interface for its AI shopping assistant. Also wrote a double-entry payments ledger built around idempotent retries, transactional outbox delivery, and overdraft protection under row-level locking. Have led a small frontend team and mentored three engineers. Statistics graduate now working in AI evaluation — labelled sets, per-class precision and recall, and regression gates that fail the build when quality drops — with an AWS generative AI certification in progress.",
 } as const;
 
 export const contact: Contact = {
@@ -83,14 +83,14 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "finaive",
     company: "Finaive",
-    title: "AI-powered escrow, web and mobile",
+    title: "AI-assisted escrow marketplace, web and mobile",
     summary:
-      "An escrow platform that uses AI-driven risk signals to protect both sides of a transaction.",
+      "An escrow marketplace of verified sellers, with an AI shopping assistant that helps buyers find and vet them.",
     contribution:
-      "Lead frontend for the platform end to end — secure transaction workflows, dispute and status tracking, and the user dashboards that sit on top of them. Also build and debug complex UI on the React Native app. Work directly with stakeholders and backend engineers to turn business rules into interfaces people can actually trust.",
-    role: "Frontend Engineer (Contract)",
+      "Started as lead frontend — secure transaction workflows, dispute and status tracking, the dashboards on top of them, and complex UI on the React Native app. Since mid-2026 I work across the whole stack: Postgres schema and migrations, Supabase edge functions, and the Next.js app. Built the interface for the AI shopping assistant, including billing that warns a buyer before a new search is charged and says plainly when a failed one wasn't.",
+    role: "Frontend, then Full-Stack Engineer (Contract)",
     period: "Jan 2024 — Present",
-    stack: ["React", "Next.js", "TypeScript", "React Native"],
+    stack: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "React Native"],
     quote: {
       content:
         "Femi's work on our AI-powered escrow platform exceeded all expectations. His ability to translate complex business requirements into elegant technical solutions is remarkable.",
@@ -274,16 +274,17 @@ export const roles: Role[] = [
     ],
   },
   {
-    title: "Frontend Engineer (Contract)",
+    title: "Frontend, then Full-Stack Engineer (Contract)",
     company: "Finaive",
     location: "Lagos, NG / MD, USA",
     period: "Jan 2024 — Present",
     current: true,
     commitment: "~10 h/week",
     bullets: [
-      "Lead frontend development for an AI-powered escrow platform built around security, transparency, and transaction efficiency.",
-      "Contribute to the React Native mobile app, building complex UI components and resolving critical bugs.",
-      "Translate business requirements into a performant, responsive platform alongside stakeholders and backend engineers.",
+      "Work across the full stack since July 2026 — Postgres schema, Supabase edge functions, and the Next.js app — shipping features including service requirements agreed before payment rather than after, buyer Trust Profile verification, and dashboard rails that adapt to how experienced a buyer is.",
+      "Write and apply schema migrations paired with down-migrations, so changes ship with their rollback.",
+      "Built the interface for the platform's AI shopping assistant: TrustScore-ranked sellers returned as cards inside the chat, and per-search credit billing that shows the balance, warns before a new search is charged, handles an insufficient balance, and tells the buyer when a failed search wasn't charged.",
+      "Led frontend development from 2024 — secure transaction workflows, dispute and status tracking, the migration from Vite to the Next.js App Router, and complex UI and critical fixes on the React Native app.",
     ],
   },
   {
@@ -336,7 +337,7 @@ export const focus: FocusItem[] = [
   {
     label: "AI features in production products",
     detail:
-      "Applying that work where I already build — the AI-driven risk and fraud signals inside Finaive's escrow platform are the closest thing I have to a live proving ground.",
+      "At Finaive I built the interface for its AI shopping assistant — ranked results inside the chat, and billing a buyer can trust: a warning before a search is charged, and a clear message when a failed one wasn't. The next step is the evaluation behind it.",
     status: "active",
   },
 ];
@@ -359,7 +360,7 @@ export const stack: StackGroup[] = [
   },
   {
     label: "Backend",
-    items: ["Node.js", "NestJS", "Express", "REST APIs"],
+    items: ["Node.js", "NestJS", "Supabase", "Express", "REST APIs"],
   },
   {
     label: "Data",
