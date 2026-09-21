@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "label": "AWS generative AI certification",
+      "detail": "Working through the AWS generative AI certification track — foundation models, prompt engineering, retrieval-augmented generation, and the Bedrock service surface, alongside the AWS and Docker fundamentals that give it somewhere reliable to run.",
+      "status": "in-progress"
+    },
+    {
+      "label": "A statistics degree, pointed at AI systems",
+      "detail": "My degree is in statistics, which turns out to be the useful half of this move. Sampling, inference, and experimental design are what separate a model that demos well from one that holds up — and they apply at the application layer, not just in training.",
+      "status": "active"
+    },
+    {
+      "label": "Evaluation over impressions",
+      "detail": "Working toward labelled evaluation sets, precision and recall reported per class, and prompt versions scored against each other rather than eyeballed. Calling a model is the easy half; proving its output is dependable is the part worth being good at.",
+      "status": "next"
+    },
+    {
+      "label": "AI features in production products",
+      "detail": "At Finaive I built the interface for its AI shopping assistant — ranked results inside the chat, and billing a buyer can trust: a warning before a search is charged, and a clear message when a failed one wasn't. The next step is the evaluation behind it.",
+      "status": "active"
+    }
+  ]
+}

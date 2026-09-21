@@ -1,0 +1,13 @@
+{
+  "items": [
+    {
+      "name": "FridayApis",
+      "description": "Server-rendered frontend for a developer API platform. Integrated cryptocurrency, translation, and currency-exchange services with resilient error handling; improved initial load performance and SEO.",
+      "stack": [
+        "Next.js",
+        "SSR",
+        "REST APIs"
+      ]
+    }
+  ]
+}

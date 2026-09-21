@@ -33,7 +33,14 @@ npm run build      # production build
 npm run start      # serve the production build
 npm run typecheck  # tsc --noEmit
 npm run lint       # eslint (flat config; `next lint` was removed in Next 16)
+npm run resume:pdf # build, render public/resume.pdf, check it for ATS-safety
 ```
+
+## Editing content
+
+Content is edited at [/admin](https://falola.is-a.dev/admin), a Keystatic admin
+that commits to `content/*.json`. A GitHub Action then rebuilds the résumé PDF.
+Setup, permissions, and the ATS check are in [docs/ADMIN.md](docs/ADMIN.md).
 
 ## Environment
 
@@ -55,6 +62,9 @@ exposure that comes with it.
 Set the same variable on the host, or the deployed form will report that it
 isn't configured. The page always offers a direct mailto as a fallback.
 
+The admin needs four Keystatic GitHub App variables in production; see
+[docs/ADMIN.md](docs/ADMIN.md). The build does not depend on them.
+
 ## Structure
 
 ```
@@ -65,6 +75,9 @@ app/
 ├── icon.tsx              # Favicon, generated via next/og
 ├── favicon.ico           # Static fallback so /favicon.ico doesn't 404
 ├── opengraph-image.tsx   # Social card, generated at build time
+├── resume/page.tsx       # The résumé, laid out for ATS parsing; source of the PDF
+├── keystatic/            # The admin UI (/admin redirects here)
+├── api/keystatic/        # The admin's API; built lazily so builds don't need its secrets
 └── sitemap.ts, robots.ts
 components/
 ├── Nav, Hero, Work, Experience, Focus, About, Contact, Footer
@@ -72,8 +85,16 @@ components/
 ├── Reveal.tsx            # Scroll reveal — fails open, respects reduced motion
 ├── ThemeToggle.tsx       # Stateless; reads/writes the html.dark class
 └── icons.tsx             # Inlined brand marks (lucide-react dropped them)
-data/portfolio-data.ts    # All copy and content lives here
+content/*.json            # All copy and content; edited through the admin
+data/portfolio-data.ts    # Typed layer over content/; components import from here
 types/index.ts            # Content types
+keystatic.config.ts       # Admin schema; editorial rules appear as field help text
+scripts/
+├── resume-pdf.mjs        # Renders /resume to public/resume.pdf
+└── check-resume-pdf.mjs  # Checks the PDF the way an ATS reads it
+public/resume.pdf         # Generated; never edit by hand
+.github/workflows/
+└── resume-pdf.yml        # Rebuilds and checks the PDF when résumé content changes
 ```
 
 ## Notable implementation details
@@ -85,10 +106,15 @@ types/index.ts            # Content types
   transition that never runs lands on its end value; a keyframe starting at
   `opacity: 0` freezes there), hides only under `motion-safe`, and has a 1.2s
   failsafe. Content can't get stranded invisible.
-- **Content is data, not markup.** Copy lives in `data/portfolio-data.ts`, so
-  editing the site doesn't mean editing components.
-- **Fully static.** There are no server routes, so the whole site prerenders and
-  can be served from any static host.
+- **Content is data, not markup.** Copy lives in `content/*.json`, edited
+  through the admin, so editing the site doesn't mean editing components. There
+  is no database: the admin commits to the repo, so content stays versioned and
+  the site, the résumé page, and the PDF share one source of truth.
+- **Public pages are static.** Every page a visitor sees prerenders. The only
+  server routes are the admin's (`/keystatic`, `/api/keystatic`), which is why
+  this now needs a Node host (Vercel) rather than any static host.
+- **The résumé PDF can't drift.** It's rendered from `/resume` in CI and fails
+  the build if an ATS-style text extraction finds a problem.
 - **Generated OG card.** `app/opengraph-image.tsx` builds the social card from
   the same data as the page, so the two can't drift. No remote fonts, so it
   builds offline.

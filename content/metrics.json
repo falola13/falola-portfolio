@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "value": "25%",
+      "label": "Faster page loads",
+      "source": "RevHero frontend rearchitecture"
+    },
+    {
+      "value": "30%",
+      "label": "Fewer re-renders",
+      "source": "Scholé state-management overhaul"
+    },
+    {
+      "value": "20%",
+      "label": "Faster data retrieval",
+      "source": "Scholé admin dashboard"
+    },
+    {
+      "value": "3",
+      "label": "Engineers mentored",
+      "source": "Frontend lead at Scholé"
+    }
+  ]
+}
