@@ -1,0 +1,112 @@
+{
+  "items": [
+    {
+      "id": "finaive",
+      "company": "Finaive",
+      "title": "AI-assisted escrow marketplace, web and mobile",
+      "summary": "An escrow marketplace of verified sellers, with an AI shopping assistant that helps buyers find and vet them.",
+      "contribution": "Started as lead frontend — secure transaction workflows, dispute and status tracking, the dashboards on top of them, and complex UI on the React Native app. Since mid-2026 I work across the whole stack: Postgres schema and migrations, Supabase edge functions, and the Next.js app. Built the interface for the AI shopping assistant, including billing that warns a buyer before a new search is charged and says plainly when a failed one wasn't.",
+      "role": "Frontend, then Full-Stack Engineer (Contract)",
+      "period": "Jan 2024 — Present",
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "Supabase",
+        "PostgreSQL",
+        "React Native"
+      ],
+      "metrics": [],
+      "quote": {
+        "content": "Femi's work on our AI-powered escrow platform exceeded all expectations. His ability to translate complex business requirements into elegant technical solutions is remarkable.",
+        "name": "Uwabor Henry",
+        "role": "CEO",
+        "company": "Finaive"
+      },
+      "liveUrl": "https://finaive.com"
+    },
+    {
+      "id": "schole",
+      "company": "Scholé Labs",
+      "title": "Multi-role school management dashboard",
+      "summary": "One dashboard serving three distinct audiences — administrators, teachers, and students.",
+      "contribution": "Frontend lead: set development strategy, enforced performance and code-quality standards, and mentored three junior engineers. Spearheaded the core dashboard from wireframes to production, then reworked client-side state with Redux Toolkit and React Query to cut redundant fetching and render churn.",
+      "role": "Lead Frontend Engineer",
+      "period": "Jun 2024 — Sep 2025",
+      "stack": [
+        "Next.js",
+        "React",
+        "Redux Toolkit",
+        "React Query"
+      ],
+      "metrics": [
+        {
+          "value": "20%",
+          "label": "Faster data retrieval",
+          "source": "Admin dashboard"
+        },
+        {
+          "value": "30%",
+          "label": "Fewer re-renders",
+          "source": "State-management rework"
+        },
+        {
+          "value": "3",
+          "label": "Engineers mentored",
+          "source": "Frontend team"
+        }
+      ],
+      "quote": {
+        "content": "Working with Femi has been outstanding. He not only writes clean, maintainable code but also mentors junior developers effectively. His leadership on our dashboard project was instrumental to its success.",
+        "name": "David Oluwaloni",
+        "role": "CEO",
+        "company": "Scholé Labs"
+      },
+      "liveUrl": "https://www.scholelabs.com"
+    },
+    {
+      "id": "revhero",
+      "company": "RevHero",
+      "title": "Ground-up UI redesign and frontend rearchitecture",
+      "summary": "A revenue platform whose interface had outgrown its original structure.",
+      "contribution": "Led a full UI redesign and rebuilt the frontend on React, Next.js, and TypeScript — replacing ad-hoc styling with a responsive design system that improved usability and accessibility. Partnered with product and UX to keep the visual direction anchored to user feedback, and drove consistency across product modules.",
+      "role": "Frontend Engineer — direct, then via RevStar Consulting",
+      "period": "Jun 2025 — Present",
+      "stack": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Design systems"
+      ],
+      "metrics": [
+        {
+          "value": "25%",
+          "label": "Faster page loads",
+          "source": "Frontend rearchitecture"
+        }
+      ],
+      "quote": {
+        "content": "Olufemi transformed our entire frontend architecture. His expertise in React and Next.js helped us achieve a 25% improvement in load times.",
+        "name": "Viktoryia Dainiak",
+        "role": "Product Manager",
+        "company": "RevHero"
+      }
+    },
+    {
+      "id": "reals-spv",
+      "company": "Reals SPV",
+      "title": "Data-plan purchasing with live payment flows",
+      "summary": "A consumer platform for buying mobile data, wired to payment gateways and third-party vendors.",
+      "contribution": "Built the responsive web platform and integrated payment gateways alongside third-party data-vendor APIs. Focused on the unglamorous part that decides whether a payment product works: explicit transaction states, honest error surfaces, and feedback that tells the user exactly where their money is.",
+      "role": "Frontend Developer",
+      "period": "2023",
+      "stack": [
+        "React",
+        "Redux Toolkit",
+        "Payment gateways"
+      ],
+      "metrics": [],
+      "quote": {},
+      "liveUrl": "https://realsspv.com"
+    }
+  ]
+}

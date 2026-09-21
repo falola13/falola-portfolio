@@ -1,5 +1,10 @@
 import { ArrowDownRight, ArrowUpRight, FileText } from "lucide-react";
-import { contact, headlineMetrics, profile } from "@/data/portfolio-data";
+import {
+  RESUME_FILENAME,
+  contact,
+  headlineMetrics,
+  profile,
+} from "@/data/portfolio-data";
 import { GithubIcon, LinkedinIcon } from "./icons";
 import { Reveal } from "./Reveal";
 
@@ -67,8 +72,7 @@ export function Hero() {
             </a>
             <a
               href={contact.resume}
-              target="_blank"
-              rel="noopener noreferrer"
+              download={RESUME_FILENAME}
               className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-colors duration-200 hover:border-border-strong hover:bg-surface"
             >
               <FileText className="size-4" strokeWidth={1.7} />

@@ -1,0 +1,108 @@
+name: Résumé PDF
+
+# Rebuilds public/resume.pdf whenever anything that feeds the résumé changes —
+# including edits saved from the admin, which land as commits to content/.
+#
+# The PDF is rendered from /resume, then checked the way an applicant tracking
+# system reads it (scripts/check-resume-pdf.mjs). A failed check fails the run
+# and nothing is committed, so a broken PDF never replaces a working one.
+#
+# Rendering is deterministic, so unchanged content produces an identical file
+# and there is nothing to commit. Commits made with GITHUB_TOKEN don't trigger
+# workflows, so the PDF commit can't loop back into this one; Vercel still
+# deploys it, because Vercel watches the repo rather than Actions.
+#
+# On pull requests it renders and checks but never commits.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/**"
+      - "app/resume/**"
+      - "app/globals.css"
+      - "app/layout.tsx"
+      - "data/**"
+      - "types/**"
+      - "tailwind.config.ts"
+      - "scripts/resume-pdf.mjs"
+      - "scripts/check-resume-pdf.mjs"
+      - "package-lock.json"
+      - ".github/workflows/resume-pdf.yml"
+  pull_request:
+    paths:
+      - "content/**"
+      - "app/resume/**"
+      - "app/globals.css"
+      - "app/layout.tsx"
+      - "data/**"
+      - "types/**"
+      - "tailwind.config.ts"
+      - "scripts/resume-pdf.mjs"
+      - "scripts/check-resume-pdf.mjs"
+      - "package-lock.json"
+      - ".github/workflows/resume-pdf.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  # Two quick saves from the admin: the older run is cancelled and the newer
+  # one renders the latest content.
+  group: resume-pdf-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The PDF's dates come from the last commit that touched résumé
+          # content; a shallow clone would lose that and change the bytes.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      # The admin's GitHub App secrets are deliberately absent: the build must
+      # not depend on them (see app/api/keystatic/[...params]/route.ts).
+      - run: npm run build
+
+      - name: Render the PDF
+        run: npm run resume:render
+
+      - name: Check it the way an ATS reads it
+        run: npm run resume:check
+
+      - name: Keep the PDF as a run artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume-pdf
+          path: public/resume.pdf
+          if-no-files-found: ignore
+
+      - name: Commit the PDF if it changed
+        if: github.event_name != 'pull_request'
+        run: |
+          if git diff --quiet -- public/resume.pdf; then
+            echo "Résumé PDF unchanged; nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/resume.pdf
+          git commit -m "chore(resume): regenerate résumé PDF"
+          # Another commit may have landed while this ran.
+          git pull --rebase origin main
+          git push origin HEAD:main

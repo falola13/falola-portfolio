@@ -1,0 +1,58 @@
+{
+  "items": [
+    {
+      "label": "Languages",
+      "items": [
+        "TypeScript",
+        "JavaScript",
+        "Go",
+        "Python"
+      ]
+    },
+    {
+      "label": "Frontend",
+      "items": [
+        "React",
+        "Next.js",
+        "React Native",
+        "Redux Toolkit",
+        "React Query",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "label": "Backend",
+      "items": [
+        "Node.js",
+        "NestJS",
+        "Supabase",
+        "Express",
+        "REST APIs"
+      ]
+    },
+    {
+      "label": "Data",
+      "items": [
+        "PostgreSQL",
+        "MongoDB"
+      ]
+    },
+    {
+      "label": "Platform",
+      "items": [
+        "AWS",
+        "Docker",
+        "Git",
+        "CI/CD"
+      ]
+    },
+    {
+      "label": "AI (learning)",
+      "items": [
+        "Amazon Bedrock",
+        "RAG",
+        "Prompt engineering"
+      ]
+    }
+  ]
+}

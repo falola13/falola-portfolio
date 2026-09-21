@@ -1,0 +1,10 @@
+{
+  "name": "Falola Olufemi Adedeji",
+  "shortName": "Falola Olufemi",
+  "initials": "FOA",
+  "title": "Full-Stack Engineer",
+  "headline": "I build products where being wrong is expensive — and I hold model output to the same standard.",
+  "lede": "Full-stack engineer with five years shipping user-facing products across fintech, edtech, and consumer SaaS. Frontend architecture in React, Next.js, and React Native; backend in Go, Node.js, and NestJS. The through-line is the part nobody demos: explicit states, honest error surfaces, and claims a reviewer can check instead of taking on trust. Now applying that standard to AI, where a statistics degree turns out to be the useful half.",
+  "availability": "Open to full-stack and AI engineering roles",
+  "resumeSummary": "Full-stack engineer with five years shipping user-facing web and mobile products across fintech, edtech, and consumer SaaS. Frontend architecture in React, Next.js, and React Native; backend delivery in Supabase, PostgreSQL, Node.js, NestJS, and Go. At Finaive I work across the whole stack — schema migrations, edge functions, and the Next.js app — and built the interface for its AI shopping assistant. Also wrote a double-entry payments ledger built around idempotent retries, transactional outbox delivery, and overdraft protection under row-level locking. Have led a small frontend team and mentored three engineers. Statistics graduate now working in AI evaluation — labelled sets, per-class precision and recall, and regression gates that fail the build when quality drops — with an AWS generative AI certification in progress."
+}

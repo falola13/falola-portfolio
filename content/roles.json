@@ -1,0 +1,85 @@
+{
+  "items": [
+    {
+      "title": "Full-Stack Engineer (Contract)",
+      "company": "RevStar Consulting",
+      "location": "Tampa, FL",
+      "period": "Oct 2025 — Present",
+      "current": true,
+      "clients": [
+        "RevHero"
+      ],
+      "bullets": [
+        "Deliver features end to end across frontend and backend layers within a cross-functional consulting team of engineers, AI engineers, and product managers.",
+        "Currently assigned to RevHero — continuing the frontend work started under a direct contract, after the engagement moved onto RevStar.",
+        "Support integration, testing, and release activities to keep production deployments stable."
+      ]
+    },
+    {
+      "title": "Frontend Engineer",
+      "company": "RevHero",
+      "location": "Tampa, FL",
+      "period": "Jun 2025 — Oct 2025",
+      "current": false,
+      "clients": [],
+      "bullets": [
+        "Led a ground-up UI redesign, introducing a responsive design system that improved usability and accessibility.",
+        "Rebuilt the frontend on React, Next.js, and TypeScript — improving maintainability and cutting load times by over 25%.",
+        "Partnered with product managers and UX designers to align the visual direction with user feedback and business goals.",
+        "Engagement continued under RevStar Consulting from October 2025."
+      ]
+    },
+    {
+      "title": "Lead Frontend Engineer",
+      "company": "Scholé Labs",
+      "location": "Lagos, NG",
+      "period": "Jun 2024 — Sep 2025",
+      "current": false,
+      "clients": [],
+      "bullets": [
+        "Set frontend development strategy, mentored 3 junior engineers, and enforced code-quality and performance standards.",
+        "Spearheaded the core school management dashboard for administrators, teachers, and students — improving data retrieval time by 20%.",
+        "Implemented state management with Redux Toolkit and React Query, reducing application re-renders by over 30%."
+      ]
+    },
+    {
+      "title": "Frontend, then Full-Stack Engineer (Contract)",
+      "company": "Finaive",
+      "location": "Lagos, NG / MD, USA",
+      "period": "Jan 2024 — Present",
+      "current": true,
+      "commitment": "~10 h/week",
+      "clients": [],
+      "bullets": [
+        "Work across the full stack since July 2026 — Postgres schema, Supabase edge functions, and the Next.js app — shipping features including service requirements agreed before payment rather than after, buyer Trust Profile verification, and dashboard rails that adapt to how experienced a buyer is.",
+        "Write and apply schema migrations paired with down-migrations, so changes ship with their rollback.",
+        "Built the interface for the platform's AI shopping assistant: TrustScore-ranked sellers returned as cards inside the chat, and per-search credit billing that shows the balance, warns before a new search is charged, handles an insufficient balance, and tells the buyer when a failed search wasn't charged.",
+        "Led frontend development from 2024 — secure transaction workflows, dispute and status tracking, the migration from Vite to the Next.js App Router, and complex UI and critical fixes on the React Native app."
+      ]
+    },
+    {
+      "title": "Frontend Engineer (Contract)",
+      "company": "FridayApis",
+      "location": "Remote",
+      "period": "Sep 2023 — Dec 2023",
+      "current": false,
+      "clients": [],
+      "bullets": [
+        "Built and maintained SSR applications with Next.js for a developer-focused API platform, improving initial load performance and SEO.",
+        "Integrated cryptocurrency, translation, and currency-exchange APIs with resilient data handling."
+      ]
+    },
+    {
+      "title": "Freelance Web Developer",
+      "company": "Self-employed",
+      "location": "Remote",
+      "period": "Aug 2021 — 2023",
+      "current": false,
+      "clients": [],
+      "bullets": [
+        "Designed and built custom sites and applications for small businesses and personal brands.",
+        "Owned the full lifecycle: requirements, client communication, timelines, and deployment."
+      ]
+    }
+  ]
+}

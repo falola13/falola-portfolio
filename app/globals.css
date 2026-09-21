@@ -227,8 +227,22 @@ html:has(.resume) body {
     font-size: 9.6pt;
   }
 
-  /* Keep a role and its bullets on one page. */
-  .resume section {
+  /* Short entries — projects, education — stay whole. */
+  .resume section:not(.role) {
+    break-inside: avoid;
+  }
+
+  /*
+   * A role may continue onto the next page between bullets. Keeping each one
+   * whole left enough blank space at the foot of a page to push the résumé to
+   * three pages. Its header never separates from its first bullet, and no
+   * bullet splits across the break.
+   */
+  .resume .role-header {
+    break-after: avoid;
+  }
+
+  .resume li {
     break-inside: avoid;
   }
 

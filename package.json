@@ -9,9 +9,14 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "ANALYZE=true next build",
+    "resume:pdf": "next build && node scripts/resume-pdf.mjs && node scripts/check-resume-pdf.mjs",
+    "resume:render": "node scripts/resume-pdf.mjs",
+    "resume:check": "node scripts/check-resume-pdf.mjs"
   },
   "dependencies": {
+    "@keystatic/core": "^0.6.9",
+    "@keystatic/next": "^5.0.5",
     "clsx": "^2.1.1",
     "lucide-react": "^1.16.0",
     "next": "^16.2.6",
@@ -27,6 +32,9 @@
     "autoprefixer": "^10.4.19",
     "eslint": "^9.39.0",
     "eslint-config-next": "^16.2.6",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.3.289",
+    "playwright": "^1.63.0",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.4.5"
