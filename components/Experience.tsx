@@ -18,9 +18,9 @@ function RoleEntry({ role, index }: { role: Role; index: number }) {
             </p>
           )}
           {/*
-            Stated hours on a concurrent contract. Ambiguous overlap between
-            two "Present" roles invites the overemployment read; naming the
-            commitment answers the question before it's asked.
+            Stated hours on a part-time contract. A role marked current
+            otherwise reads as a full week, which would leave an employer
+            guessing how much of one is already spoken for.
           */}
           {role.commitment && (
             <p className="mt-1.5 font-mono text-[0.6875rem] text-subtle-foreground">
@@ -65,7 +65,7 @@ export function Experience() {
       id="experience"
       eyebrow="02 — Experience"
       title="Where the work happened."
-      intro="Two current engagements: a full-time consulting contract, and a long-running part-time contract with stated hours. Everything else is closed out with real end dates."
+      intro="One current engagement: a long-running part-time contract with stated hours. Everything else is closed out with real end dates."
     >
       <ul>
         {current.map((role, index) => (
