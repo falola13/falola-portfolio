@@ -4,15 +4,15 @@
       "title": "Full-Stack Engineer (Contract)",
       "company": "RevStar Consulting",
       "location": "Tampa, FL",
-      "period": "Oct 2025 — Present",
-      "current": true,
+      "period": "Oct 2025 — Sep 2026",
+      "current": false,
       "clients": [
         "RevHero"
       ],
       "bullets": [
-        "Deliver features end to end across frontend and backend layers within a cross-functional consulting team of engineers, AI engineers, and product managers.",
-        "Currently assigned to RevHero — continuing the frontend work started under a direct contract, after the engagement moved onto RevStar.",
-        "Support integration, testing, and release activities to keep production deployments stable."
+        "Delivered features end to end across frontend and backend layers within a cross-functional consulting team of engineers, AI engineers, and product managers.",
+        "Assigned to RevHero — continued the frontend work started under a direct contract, after the engagement moved onto RevStar.",
+        "Supported integration, testing, and release activities to keep production deployments stable."
       ]
     },
     {
